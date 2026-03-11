@@ -14,8 +14,8 @@ const items = [
     <span class="section-label">WHAT'S INCLUDED</span>
     <h2 class="included__heading">Everything. Nothing extra.</h2>
     <div class="included__grid">
-      {items.map((item) => (
-        <div class="included__item">{item}</div>
+      {items.map((item, i) => (
+        <div class="included__item reveal" style={`transition-delay: ${Math.floor(i / 2) * 0.08}s`}>{item}</div>
       ))}
     </div>
   </div>

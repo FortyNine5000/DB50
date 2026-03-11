@@ -20,6 +20,22 @@
     width: 100%;
     max-width: 360px;
     box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
+    transform: perspective(800px) rotateY(-2deg);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+  }
+
+  .cover:hover {
+    transform: perspective(800px) rotateY(0deg) translateY(-4px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  }
+
+  @media (max-width: 768px) {
+    .cover {
+      transform: none;
+    }
+    .cover:hover {
+      transform: translateY(-2px);
+    }
   }
 
   .cover__border {

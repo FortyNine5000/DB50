@@ -120,13 +120,15 @@ h2 {
 /* Section label */
 .section-label {
   font-family: var(--font-mono);
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 500;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--olive);
   margin-bottom: 16px;
   display: block;
+  padding-left: 12px;
+  border-left: 2px solid var(--olive);
 }
 
 /* CTA Button */
@@ -149,6 +151,7 @@ h2 {
 .cta-button:hover {
   background-color: var(--rust-hover);
   transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(196, 90, 36, 0.25);
 }
 
 .cta-button:active {

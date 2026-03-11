@@ -34,7 +34,9 @@ const faqs = [
       {faqs.map((faq) => (
         <details class="faq__item">
           <summary class="faq__question">{faq.question}</summary>
-          <p class="faq__answer">{faq.answer}</p>
+          <div class="faq__answer-wrap">
+            <p class="faq__answer">{faq.answer}</p>
+          </div>
         </details>
       ))}
     </div>
@@ -77,12 +79,28 @@ const faqs = [
     font-weight: 400;
     color: var(--light-gray);
     flex-shrink: 0;
-    transition: transform 0.2s ease;
+    transition: transform 0.3s ease, color 0.3s ease;
   }
 
   details[open] .faq__question::after {
-    content: '−';
+    transform: rotate(45deg);
     color: var(--olive);
+  }
+
+  .faq__answer-wrap {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.35s ease;
+    overflow: hidden;
+  }
+
+  details[open] .faq__answer-wrap {
+    grid-template-rows: 1fr;
+  }
+
+  .faq__answer-wrap > .faq__answer {
+    min-height: 0;
+    overflow: hidden;
   }
 
   .faq__answer {
