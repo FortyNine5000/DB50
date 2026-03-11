@@ -1,0 +1,81 @@
+---
+interface Props {
+  checkoutUrl: string;
+}
+const { checkoutUrl } = Astro.props;
+---
+
+<section class="hero section">
+  <div class="hero__inner container">
+    <h1 class="hero-stagger">THE FIFTY STANDARD</h1>
+    <p class="hero__tagline hero-stagger">Thirty workouts for strength, lungs, and durability.</p>
+    <p class="hero__detail hero-stagger">Built around bodyweight and one pair of 50 lb dumbbells.</p>
+    <p class="hero__edge hero-stagger">SIMPLE SETUP. TOUGH SESSIONS.</p>
+    <a href={checkoutUrl} class="cta-button hero-stagger">GET THE FIFTY STANDARD</a>
+    <span class="hero__price hero-stagger">$29 — yours forever</span>
+  </div>
+</section>
+
+<style>
+  .hero {
+    padding-top: 160px;
+    padding-bottom: 64px;
+    text-align: center;
+  }
+
+  .hero__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+
+  .hero h1 {
+    margin-bottom: 24px;
+  }
+
+  .hero__tagline {
+    font-family: var(--font-body);
+    font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+    font-weight: 400;
+    color: var(--warm-gray);
+    line-height: 1.5;
+    max-width: var(--text-width);
+    margin-bottom: 8px;
+  }
+
+  .hero__detail {
+    font-family: var(--font-body);
+    font-size: clamp(1rem, 2vw, 1.15rem);
+    font-weight: 400;
+    color: var(--warm-gray);
+    line-height: 1.5;
+    max-width: var(--text-width);
+    margin-bottom: 28px;
+  }
+
+  .hero__edge {
+    font-family: var(--font-headline);
+    font-weight: 700;
+    font-size: clamp(0.85rem, 1.5vw, 1rem);
+    letter-spacing: 0.15em;
+    color: var(--olive);
+    margin-bottom: 32px;
+  }
+
+  .hero__price {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--light-gray);
+    margin-top: 16px;
+    letter-spacing: 0.02em;
+  }
+
+  @media (max-width: 768px) {
+    .hero {
+      padding-top: 120px;
+      padding-bottom: 48px;
+    }
+  }
+</style>

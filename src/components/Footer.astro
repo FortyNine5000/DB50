@@ -1,0 +1,46 @@
+---
+---
+
+<footer class="footer">
+  <div class="footer__inner container">
+    <span class="footer__brand">THE FIFTY STANDARD</span>
+    <span class="footer__tagline">The pair. The work. The standard.</span>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    border-top: 1px solid var(--border);
+    padding: 32px 0;
+  }
+
+  .footer__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer__brand {
+    font-family: var(--font-headline);
+    font-weight: 700;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--light-gray);
+  }
+
+  .footer__tagline {
+    font-family: var(--font-body);
+    font-style: italic;
+    font-size: 14px;
+    color: var(--light-gray);
+  }
+
+  @media (max-width: 768px) {
+    .footer__inner {
+      flex-direction: column;
+      gap: 8px;
+      text-align: center;
+    }
+  }
+</style>

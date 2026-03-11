@@ -1,0 +1,219 @@
+/* ===========================
+   THE FIFTY STANDARD
+   Design System & Global Styles
+   =========================== */
+
+:root {
+  /* Backgrounds */
+  --bg-primary: #F4F1EB;
+  --bg-secondary: #EBE7DF;
+  --bg-tertiary: #E0DBD1;
+  --border: #D6D0C4;
+
+  /* Foreground */
+  --charcoal: #1A1A1A;
+  --olive: #4A5D23;
+  --warm-gray: #5E5E5E;
+  --light-gray: #8E8880;
+  --muted-gold: #A8832A;
+
+  /* Action */
+  --rust: #C45A24;
+  --rust-hover: #AD4E1D;
+  --button-text: #FFFFFF;
+
+  /* Fonts */
+  --font-headline: 'Barlow Condensed', sans-serif;
+  --font-body: 'Source Sans 3', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Layout */
+  --max-width: 1100px;
+  --text-width: 560px;
+  --section-pad: 92px;
+  --section-pad-mobile: 56px;
+  --side-pad: 48px;
+  --side-pad-mobile: 24px;
+}
+
+/* Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--charcoal);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.55;
+  position: relative;
+}
+
+/* Grain overlay */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.028;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
+
+/* Container */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding-left: var(--side-pad);
+  padding-right: var(--side-pad);
+}
+
+/* Section */
+.section {
+  padding-top: var(--section-pad);
+  padding-bottom: var(--section-pad);
+}
+
+.section--secondary {
+  background-color: var(--bg-secondary);
+}
+
+/* Typography */
+h1, h2, h3 {
+  font-family: var(--font-headline);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.012em;
+  line-height: 0.9;
+  color: var(--charcoal);
+}
+
+h1 {
+  font-size: clamp(3rem, 8vw, 5.5rem);
+  font-weight: 900;
+}
+
+h2 {
+  font-size: clamp(2rem, 5vw, 3.2rem);
+}
+
+.text-body {
+  max-width: var(--text-width);
+  color: var(--warm-gray);
+  line-height: 1.6;
+}
+
+/* Section label */
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--olive);
+  margin-bottom: 16px;
+  display: block;
+}
+
+/* CTA Button */
+.cta-button {
+  display: inline-block;
+  background-color: var(--rust);
+  color: var(--button-text);
+  font-family: var(--font-headline);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 16px 36px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.cta-button:hover {
+  background-color: var(--rust-hover);
+  transform: translateY(-1px);
+}
+
+.cta-button:active {
+  transform: translateY(0);
+}
+
+/* Gold rule divider */
+.gold-rule {
+  border: none;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--muted-gold),
+    transparent
+  );
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.reveal--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Hero stagger animation */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-stagger {
+  opacity: 0;
+  animation: fadeUp 0.6s ease forwards;
+}
+
+.hero-stagger:nth-child(1) { animation-delay: 0.15s; }
+.hero-stagger:nth-child(2) { animation-delay: 0.3s; }
+.hero-stagger:nth-child(3) { animation-delay: 0.45s; }
+.hero-stagger:nth-child(4) { animation-delay: 0.6s; }
+.hero-stagger:nth-child(5) { animation-delay: 0.75s; }
+.hero-stagger:nth-child(6) { animation-delay: 0.9s; }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .container {
+    padding-left: var(--side-pad-mobile);
+    padding-right: var(--side-pad-mobile);
+  }
+
+  .section {
+    padding-top: var(--section-pad-mobile);
+    padding-bottom: var(--section-pad-mobile);
+  }
+}

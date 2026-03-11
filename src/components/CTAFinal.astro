@@ -1,0 +1,68 @@
+---
+interface Props {
+  checkoutUrl: string;
+}
+const { checkoutUrl } = Astro.props;
+---
+
+<section class="cta-final section reveal" id="purchase">
+  <div class="cta-final__inner container">
+    <h2 class="cta-final__headline">30 WORKOUTS. ONE PAIR OF DUMBBELLS.</h2>
+    <p class="cta-final__sub-headline">NO GYM. NO APP. NO SUBSCRIPTION.</p>
+    <p class="cta-final__tagline">Simple setup. Tough sessions.</p>
+    <a href={checkoutUrl} class="cta-button cta-final__button">GET THE FIFTY STANDARD — $29</a>
+    <p class="cta-final__fine-print">One payment. Yours forever. 30-day money-back guarantee.</p>
+  </div>
+</section>
+
+<style>
+  .cta-final__inner {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .cta-final__headline {
+    margin-bottom: 8px;
+  }
+
+  .cta-final__sub-headline {
+    font-family: var(--font-headline);
+    font-weight: 700;
+    font-size: clamp(1.3rem, 3.5vw, 2.2rem);
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    line-height: 0.95;
+    color: var(--charcoal);
+    margin-bottom: 24px;
+  }
+
+  .cta-final__tagline {
+    font-family: var(--font-body);
+    font-size: clamp(1rem, 2vw, 1.15rem);
+    color: var(--warm-gray);
+    margin-bottom: 32px;
+  }
+
+  .cta-final__button {
+    font-size: 15px;
+    padding: 18px 44px;
+  }
+
+  .cta-final__fine-print {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--light-gray);
+    margin-top: 16px;
+    letter-spacing: 0.02em;
+  }
+
+  @media (max-width: 768px) {
+    .cta-final__button {
+      width: 100%;
+      text-align: center;
+      max-width: 400px;
+    }
+  }
+</style>

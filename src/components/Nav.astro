@@ -1,0 +1,67 @@
+---
+interface Props {
+  checkoutUrl: string;
+}
+const { checkoutUrl } = Astro.props;
+---
+
+<nav class="nav">
+  <div class="nav__inner container">
+    <a href="#" class="nav__brand">THE FIFTY STANDARD</a>
+    <a href={checkoutUrl} class="nav__cta cta-button">GET THE FIFTY STANDARD</a>
+  </div>
+</nav>
+
+<style>
+  .nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    border-bottom: 1px solid transparent;
+  }
+
+  :global(.nav--scrolled) .nav,
+  .nav:global(.nav--scrolled) {
+    background-color: rgba(244, 241, 235, 0.93);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom-color: #E0DBD1;
+  }
+
+  .nav__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 64px;
+  }
+
+  .nav__brand {
+    font-family: var(--font-headline);
+    font-weight: 800;
+    font-size: 14.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--charcoal);
+    text-decoration: none;
+  }
+
+  .nav__cta {
+    font-size: 12px;
+    padding: 10px 24px;
+  }
+
+  @media (max-width: 768px) {
+    .nav__cta {
+      font-size: 11px;
+      padding: 8px 16px;
+      letter-spacing: 0.05em;
+    }
+
+    .nav__brand {
+      font-size: 12.5px;
+    }
+  }
+</style>

@@ -1,0 +1,66 @@
+---
+const specs = [
+  { value: '30', label: 'Workouts' },
+  { value: '20–40', label: 'Minutes' },
+  { value: '50', label: 'lb Dumbbells' },
+  { value: '25–50', label: 'lb Scales' },
+];
+---
+
+<div class="spec-row">
+  <div class="spec-row__inner container">
+    {specs.map((spec) => (
+      <div class="spec-item">
+        <span class="spec-item__value">{spec.value}</span>
+        <span class="spec-item__label">{spec.label}</span>
+      </div>
+    ))}
+  </div>
+</div>
+
+<style>
+  .spec-row {
+    border-top: 2px solid var(--charcoal);
+    padding-top: 32px;
+    padding-bottom: 32px;
+  }
+
+  .spec-row__inner {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    text-align: center;
+  }
+
+  .spec-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .spec-item__value {
+    font-family: var(--font-headline);
+    font-weight: 900;
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    line-height: 1;
+    color: var(--charcoal);
+    letter-spacing: -0.015em;
+  }
+
+  .spec-item__label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--light-gray);
+  }
+
+  @media (max-width: 768px) {
+    .spec-row__inner {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 32px 16px;
+    }
+  }
+</style>
