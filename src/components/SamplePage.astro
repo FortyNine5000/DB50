@@ -1,0 +1,202 @@
+---
+---
+
+<div class="page">
+  <div class="page__inner">
+    <div class="page__header">
+      <span class="page__day">DAY 20 / 30</span>
+      <span class="page__time">~30 min</span>
+    </div>
+    <span class="page__label">FOR TIME</span>
+    <div class="page__block">
+      <span class="page__rounds">5 rounds:</span>
+      <div class="page__exercises">
+        <div class="page__exercise">
+          <span class="page__movement">DB Front Squat</span>
+          <span class="page__reps">— 10</span>
+        </div>
+        <div class="page__exercise">
+          <span class="page__movement">Push-Up</span>
+          <span class="page__reps">— 15</span>
+        </div>
+        <div class="page__exercise">
+          <span class="page__movement">DB Hang Clean</span>
+          <span class="page__reps">— 8</span>
+        </div>
+        <div class="page__exercise">
+          <span class="page__movement">Farmer Carry</span>
+          <span class="page__reps">— 40m</span>
+        </div>
+      </div>
+    </div>
+    <div class="page__divider">Then</div>
+    <div class="page__block">
+      <span class="page__rounds">3 rounds:</span>
+      <div class="page__exercises">
+        <div class="page__exercise">
+          <span class="page__movement">DB Push Press</span>
+          <span class="page__reps">— 12</span>
+        </div>
+        <div class="page__exercise">
+          <span class="page__movement">Burpee</span>
+          <span class="page__reps">— 10</span>
+        </div>
+        <div class="page__exercise">
+          <span class="page__movement">DB Row</span>
+          <span class="page__reps">— 12 each</span>
+        </div>
+      </div>
+    </div>
+    <p class="page__note">Day 1 is not this. Day 30 is worse.</p>
+    <div class="page__log">
+      <span class="page__log-label">LOG</span>
+      <div class="page__log-line"></div>
+      <div class="page__log-line"></div>
+      <div class="page__log-line"></div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .page {
+    aspect-ratio: 8.5 / 11;
+    background-color: #FAF9F6;
+    border: 1px solid var(--border);
+    padding: 8px;
+    width: 100%;
+    max-width: 360px;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
+  }
+
+  .page__inner {
+    border: 1px solid var(--border);
+    width: 100%;
+    height: 100%;
+    padding: clamp(16px, 3vw, 28px);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .page__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .page__day {
+    font-family: var(--font-headline);
+    font-weight: 800;
+    font-size: clamp(0.85rem, 1.8vw, 1.1rem);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--charcoal);
+  }
+
+  .page__time {
+    font-family: var(--font-mono);
+    font-size: clamp(0.6rem, 1.2vw, 0.75rem);
+    color: var(--light-gray);
+  }
+
+  .page__label {
+    font-family: var(--font-headline);
+    font-weight: 700;
+    font-size: clamp(0.75rem, 1.5vw, 0.95rem);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--olive);
+    margin-bottom: 12px;
+  }
+
+  .page__block {
+    margin-bottom: 8px;
+  }
+
+  .page__rounds {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: clamp(0.7rem, 1.3vw, 0.85rem);
+    color: var(--charcoal);
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .page__exercises {
+    padding-left: 16px;
+  }
+
+  .page__exercise {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 2px 0;
+  }
+
+  .page__movement {
+    font-family: var(--font-body);
+    font-size: clamp(0.65rem, 1.2vw, 0.8rem);
+    color: var(--charcoal);
+  }
+
+  .page__reps {
+    font-family: var(--font-mono);
+    font-size: clamp(0.6rem, 1.1vw, 0.72rem);
+    color: var(--warm-gray);
+  }
+
+  .page__divider {
+    font-family: var(--font-mono);
+    font-size: clamp(0.6rem, 1vw, 0.7rem);
+    color: var(--light-gray);
+    text-align: center;
+    padding: 6px 0;
+    position: relative;
+  }
+
+  .page__divider::before,
+  .page__divider::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    height: 1px;
+    width: 25%;
+    background-color: var(--border);
+  }
+
+  .page__divider::before { left: 10%; }
+  .page__divider::after { right: 10%; }
+
+  .page__note {
+    font-family: var(--font-body);
+    font-style: italic;
+    font-size: clamp(0.6rem, 1.1vw, 0.72rem);
+    color: var(--light-gray);
+    margin-top: auto;
+    padding-top: 12px;
+  }
+
+  .page__log {
+    padding-top: 10px;
+    margin-top: 8px;
+  }
+
+  .page__log-label {
+    font-family: var(--font-mono);
+    font-size: clamp(0.55rem, 1vw, 0.65rem);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--light-gray);
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  .page__log-line {
+    height: 1px;
+    background-color: var(--border);
+    margin-bottom: 12px;
+  }
+</style>

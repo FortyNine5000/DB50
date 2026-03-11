@@ -1,0 +1,43 @@
+---
+import ProductCover from './ProductCover.astro';
+import SamplePage from './SamplePage.astro';
+---
+
+<section class="program section section--secondary reveal">
+  <div class="container">
+    <span class="section-label">THE PROGRAM</span>
+    <h2 class="program__heading">A month of hard work that ramps.</h2>
+    <p class="text-body program__body">
+      The Fifty Standard is a 30-workout training block built around bodyweight and one pair of 50 lb dumbbells. It's made for strength, lungs, and durability without a full gym, a subscription stack, or a pile of equipment.
+    </p>
+    <div class="program__mockups">
+      <ProductCover />
+      <SamplePage />
+    </div>
+  </div>
+</section>
+
+<style>
+  .program__heading {
+    margin-bottom: 20px;
+  }
+
+  .program__body {
+    margin-bottom: 48px;
+  }
+
+  .program__mockups {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    justify-items: center;
+    align-items: start;
+  }
+
+  @media (max-width: 768px) {
+    .program__mockups {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+  }
+</style>

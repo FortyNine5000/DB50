@@ -1,0 +1,96 @@
+---
+const faqs = [
+  {
+    question: 'How long are the workouts?',
+    answer: '20 to 40 minutes. Some days are shorter and heavier. Some are longer and worse.',
+  },
+  {
+    question: 'Is this actually hard?',
+    answer: 'At 50 lbs, yes. A pair of 50s is a serious load for pressing, squatting, rowing, and carrying under fatigue. The workouts are accessible but they are not easy. They get harder as the month goes on.',
+  },
+  {
+    question: "I don't have 50 lb dumbbells.",
+    answer: 'The program works with 25–50 lb dumbbells. Every workout is the same regardless of weight. Scaling notes are included.',
+  },
+  {
+    question: 'How is this different from free workouts online?',
+    answer: 'This is a single coherent program that ramps over 30 sessions. The progression is designed, the pacing is intentional, and the whole thing has a finish line.',
+  },
+  {
+    question: 'Do I need any other equipment?',
+    answer: 'No. Bodyweight and one pair of dumbbells. Space to move and somewhere to set them down.',
+  },
+  {
+    question: "What if I can't finish a workout?",
+    answer: 'Log what you did. Come back tomorrow.',
+  },
+];
+---
+
+<section class="faq section section--secondary reveal">
+  <div class="container">
+    <span class="section-label">QUESTIONS</span>
+    <div class="faq__list">
+      {faqs.map((faq) => (
+        <details class="faq__item">
+          <summary class="faq__question">{faq.question}</summary>
+          <p class="faq__answer">{faq.answer}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq__list {
+    max-width: 640px;
+  }
+
+  .faq__item {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .faq__question {
+    font-family: var(--font-headline);
+    font-weight: 700;
+    font-size: clamp(1.05rem, 2vw, 1.25rem);
+    text-transform: uppercase;
+    letter-spacing: -0.005em;
+    color: var(--charcoal);
+    padding: 20px 0;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .faq__question::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq__question::after {
+    content: '+';
+    font-family: var(--font-mono);
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--light-gray);
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+  }
+
+  details[open] .faq__question::after {
+    content: '−';
+    color: var(--olive);
+  }
+
+  .faq__answer {
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--warm-gray);
+    padding-bottom: 20px;
+    max-width: var(--text-width);
+  }
+</style>

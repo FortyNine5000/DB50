@@ -1,0 +1,59 @@
+---
+const items = [
+  '30 workouts',
+  'Warm-up guidance',
+  'Movement notes',
+  'Scaling options',
+  'Demo support',
+  'Printable training log',
+];
+---
+
+<section class="included section reveal">
+  <div class="container">
+    <span class="section-label">WHAT'S INCLUDED</span>
+    <h2 class="included__heading">Everything. Nothing extra.</h2>
+    <div class="included__grid">
+      {items.map((item) => (
+        <div class="included__item">{item}</div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .included__heading {
+    margin-bottom: 32px;
+  }
+
+  .included__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-top: 2px solid var(--charcoal);
+    max-width: 640px;
+  }
+
+  .included__item {
+    font-family: var(--font-body);
+    font-size: 16px;
+    color: var(--charcoal);
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .included__item::before {
+    content: '\2022';
+    color: var(--olive);
+    font-size: 18px;
+    line-height: 1;
+  }
+
+  @media (max-width: 768px) {
+    .included__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
