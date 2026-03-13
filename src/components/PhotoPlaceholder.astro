@@ -1,0 +1,39 @@
+---
+---
+
+<div class="photo-placeholder">
+  <span class="photo-placeholder__text">[ photograph: a pair of 50 lb dumbbells on concrete, morning light ]</span>
+</div>
+
+<style>
+  .photo-placeholder {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--side-pad);
+  }
+
+  .photo-placeholder__text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 3 / 1;
+    background-color: var(--bg-tertiary);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--light-gray);
+    letter-spacing: 0.02em;
+  }
+
+  @media (max-width: 768px) {
+    .photo-placeholder {
+      padding: 0 var(--side-pad-mobile);
+    }
+
+    .photo-placeholder__text {
+      aspect-ratio: 2 / 1;
+      font-size: 11px;
+      text-align: center;
+      padding: 16px;
+    }
+  }
+</style>

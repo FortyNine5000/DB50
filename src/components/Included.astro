@@ -1,11 +1,11 @@
 ---
 const items = [
-  '30 workouts',
-  'Warm-up guidance',
-  'Movement notes',
-  'Scaling options',
-  'Demo support',
-  'Printable training log',
+  { title: '30 workouts', desc: 'Programmed to ramp from base capacity to peak demand.' },
+  { title: 'Warm-up guidance', desc: 'Prep protocols for every session. Not an afterthought.' },
+  { title: 'Movement notes', desc: 'Coaching cues and standards for every exercise in the program.' },
+  { title: 'Scaling options', desc: 'Full scaling notes for 25–50 lb dumbbells. Same workouts, adjusted load.' },
+  { title: 'Demo support', desc: 'Video links for every movement so you know exactly what you\'re doing.' },
+  { title: 'Printable training log', desc: 'Track every session, every round, every time. The log is your proof.' },
 ];
 ---
 
@@ -14,8 +14,11 @@ const items = [
     <span class="section-label">WHAT'S INCLUDED</span>
     <h2 class="included__heading">Everything. Nothing extra.</h2>
     <div class="included__grid">
-      {items.map((item) => (
-        <div class="included__item">{item}</div>
+      {items.map((item, i) => (
+        <div class="included__item reveal" style={`transition-delay: ${Math.floor(i / 2) * 0.08}s`}>
+          <span class="included__title">{item.title}</span>
+          <span class="included__desc">{item.desc}</span>
+        </div>
       ))}
     </div>
   </div>
@@ -34,21 +37,36 @@ const items = [
   }
 
   .included__item {
+    padding: 18px 0;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .included__title {
     font-family: var(--font-body);
     font-size: 16px;
+    font-weight: 500;
     color: var(--charcoal);
-    padding: 14px 0;
-    border-bottom: 1px solid var(--border);
     display: flex;
     align-items: center;
     gap: 10px;
   }
 
-  .included__item::before {
+  .included__title::before {
     content: '\2022';
     color: var(--olive);
     font-size: 18px;
     line-height: 1;
+  }
+
+  .included__desc {
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--light-gray);
+    line-height: 1.5;
+    padding-left: 22px;
   }
 
   @media (max-width: 768px) {

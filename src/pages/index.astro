@@ -4,28 +4,29 @@ import Nav from '../components/Nav.astro';
 import Hero from '../components/Hero.astro';
 import SpecRow from '../components/SpecRow.astro';
 import Program from '../components/Program.astro';
-import Included from '../components/Included.astro';
+import FinishLine from '../components/FinishLine.astro';
+import Pricing from '../components/Pricing.astro';
+import Setup from '../components/Setup.astro';
 import FAQ from '../components/FAQ.astro';
 import CTAFinal from '../components/CTAFinal.astro';
 import Footer from '../components/Footer.astro';
 
-// Replace with your Gumroad or Lemon Squeezy checkout URL
-const checkoutUrl = '#purchase';
+// PRE-LAUNCH MODE: All CTAs are email capture forms via Buttondown.
+// When ready to sell, swap forms back to purchase links:
+//   const checkoutUrl = 'https://your-gumroad-or-lemonsqueezy-url';
 ---
 
 <Layout>
-  <Nav checkoutUrl={checkoutUrl} />
+  <Nav />
   <main>
-    <Hero checkoutUrl={checkoutUrl} />
+    <Hero />
     <SpecRow />
-    <hr class="gold-rule" />
     <Program />
-    <hr class="gold-rule" />
-    <Included />
-    <hr class="gold-rule" />
+    <FinishLine />
+    <Pricing />
+    <Setup />
     <FAQ />
-    <hr class="gold-rule" />
-    <CTAFinal checkoutUrl={checkoutUrl} />
+    <CTAFinal />
   </main>
   <Footer />
 </Layout>

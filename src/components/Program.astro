@@ -1,18 +1,99 @@
 ---
 import ProductCover from './ProductCover.astro';
-import SamplePage from './SamplePage.astro';
+import WorkoutCard from './WorkoutCard.astro';
+
+const day3 = {
+  week: 1,
+  day: 3,
+  total: 30,
+  duration: '~22 min',
+  label: 'FOR TIME',
+  blocks: [
+    {
+      heading: '3 rounds:',
+      exercises: [
+        { name: 'Dumbbell Goblet Squat', reps: '— 12' },
+        { name: 'Push-Up', reps: '— 10' },
+        { name: 'Dumbbell Bent-Over Row', reps: '— 10' },
+        { name: '200m Run or 40 High Knees', reps: '' },
+      ],
+    },
+  ],
+  afterNote: 'Rest 2:00 between rounds.',
+  note: 'The early days build your base.',
+};
+
+const day15 = {
+  week: 3,
+  day: 15,
+  total: 30,
+  duration: '~28 min',
+  label: 'AMRAP 25 MINUTES',
+  blocks: [
+    {
+      exercises: [
+        { name: 'Dumbbell Thruster', reps: '— 8' },
+        { name: 'Burpee', reps: '— 6' },
+        { name: 'Farmer Carry', reps: '— 40m' },
+        { name: 'Dumbbell Renegade Row', reps: '— 8' },
+        { name: 'Air Squat', reps: '— 15' },
+      ],
+    },
+  ],
+  note: 'By now you know what 50 lbs feels like at the end of a round.',
+};
+
+const day28 = {
+  week: 4,
+  day: 28,
+  total: 30,
+  duration: '~38 min',
+  label: '5 ROUNDS FOR TIME',
+  blocks: [
+    {
+      exercises: [
+        { name: 'Dumbbell Clean & Press', reps: '— 8' },
+        { name: 'Burpee', reps: '— 12' },
+        { name: 'Dumbbell Front Squat', reps: '— 10' },
+        { name: 'Push-Up', reps: '— 15' },
+        { name: 'Farmer Carry', reps: '— 60m' },
+        { name: 'Dumbbell Row', reps: '— 10 each' },
+      ],
+    },
+  ],
+  thenBlock: {
+    exercises: [
+      { name: '100 Air Squats', reps: '— partition however you want' },
+    ],
+  },
+  note: 'Day 1 is not this. Day 30 is worse.',
+};
 ---
 
 <section class="program section section--secondary reveal">
   <div class="container">
-    <span class="section-label">THE PROGRAM</span>
-    <h2 class="program__heading">A month of hard work that ramps.</h2>
+    <span class="section-label">THE CHALLENGE</span>
+    <h2 class="program__heading">It gets harder every week. That's the point.</h2>
     <p class="text-body program__body">
-      The Fifty Standard is a 30-workout training block built around bodyweight and one pair of 50 lb dumbbells. It's made for strength, lungs, and durability without a full gym, a subscription stack, or a pile of equipment.
+      The Fifty Standard is a four-week training challenge built around bodyweight and one pair of 50 lb dumbbells. Each week is harder than the last. The sessions mix strength and conditioning into single blocks of work — no separate parts, no filler.
     </p>
-    <div class="program__mockups">
+    <p class="text-body program__body program__body--closer">
+      You start on Day 1. You finish on Day 30. That's the standard.
+    </p>
+    <div class="program__cards">
+      <div class="reveal">
+        <WorkoutCard {...day3} />
+      </div>
+      <div class="reveal" style="transition-delay: 0.1s">
+        <WorkoutCard {...day15} />
+      </div>
+      <div class="reveal" style="transition-delay: 0.2s">
+        <WorkoutCard {...day28} />
+      </div>
+    </div>
+    <div class="program__cover-wrap reveal">
       <ProductCover />
-      <SamplePage />
+      <span class="program__cover-caption">Edition 01 — 2026</span>
     </div>
   </div>
 </section>
@@ -26,18 +107,37 @@ import SamplePage from './SamplePage.astro';
     margin-bottom: 48px;
   }
 
-  .program__mockups {
+  .program__body--closer {
+    margin-top: -36px;
+    margin-bottom: 48px;
+  }
+
+  .program__cards {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-    justify-items: center;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
     align-items: start;
   }
 
+  .program__cover-wrap {
+    margin-top: 48px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .program__cover-caption {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--light-gray);
+    margin-top: 12px;
+    letter-spacing: 0.04em;
+  }
+
   @media (max-width: 768px) {
-    .program__mockups {
+    .program__cards {
       grid-template-columns: 1fr;
-      gap: 32px;
+      gap: 20px;
     }
   }
 </style>

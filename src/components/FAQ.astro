@@ -1,40 +1,43 @@
 ---
 const faqs = [
   {
-    question: 'How long are the workouts?',
-    answer: '20 to 40 minutes. Some days are shorter and heavier. Some are longer and worse.',
+    question: 'How long are the sessions?',
+    answer: '20 to 40 minutes. Some days are shorter and heavier. Some are longer and worse. Every session gets done in under 45 minutes.',
   },
   {
     question: 'Is this actually hard?',
-    answer: 'At 50 lbs, yes. A pair of 50s is a serious load for pressing, squatting, rowing, and carrying under fatigue. The workouts are accessible but they are not easy. They get harder as the month goes on.',
+    answer: 'At 50 lbs, yes. A pair of 50s is a serious load for pressing, squatting, rowing, and carrying under fatigue. The sessions are accessible but they are not easy. Week 4 is significantly harder than Week 1.',
   },
   {
     question: "I don't have 50 lb dumbbells.",
-    answer: 'The program works with 25–50 lb dumbbells. Every workout is the same regardless of weight. Scaling notes are included.',
+    answer: 'The program works with 25–50 lb dumbbells. Every session is the same regardless of weight. Scaling notes are included. It will be hard at any weight in that range.',
   },
   {
     question: 'How is this different from free workouts online?',
-    answer: 'This is a single coherent program that ramps over 30 sessions. The progression is designed, the pacing is intentional, and the whole thing has a finish line.',
+    answer: "This is a single coherent program that ramps over four weeks. The progression is designed, the pacing is intentional, and the whole thing has a finish line. Free workouts don't have a Day 30.",
   },
   {
-    question: 'Do I need any other equipment?',
-    answer: 'No. Bodyweight and one pair of dumbbells. Space to move and somewhere to set them down.',
+    question: 'What if I miss a day?',
+    answer: 'Log what you did. Pick up where you left off. The goal is to complete all 30 sessions, not to be perfect about the schedule.',
   },
   {
-    question: "What if I can't finish a workout?",
-    answer: 'Log what you did. Come back tomorrow.',
+    question: 'Can I do this more than once?',
+    answer: 'Yes. Some people will run it once and move on. Some will come back every year as a personal benchmark. Both are the point.',
   },
 ];
 ---
 
 <section class="faq section section--secondary reveal">
   <div class="container">
+    <p class="faq__intro">This is not a random collection of workouts. Not an app. Not a subscription. Not a 90-day body transformation promise. It's 30 structured sessions with a finish line.</p>
     <span class="section-label">QUESTIONS</span>
     <div class="faq__list">
       {faqs.map((faq) => (
         <details class="faq__item">
           <summary class="faq__question">{faq.question}</summary>
-          <p class="faq__answer">{faq.answer}</p>
+          <div class="faq__answer-wrap">
+            <p class="faq__answer">{faq.answer}</p>
+          </div>
         </details>
       ))}
     </div>
@@ -42,6 +45,15 @@ const faqs = [
 </section>
 
 <style>
+  .faq__intro {
+    font-family: var(--font-body);
+    font-size: 17px;
+    color: var(--warm-gray);
+    max-width: var(--text-width);
+    margin-bottom: 32px;
+    line-height: 1.6;
+  }
+
   .faq__list {
     max-width: 640px;
   }
@@ -77,12 +89,28 @@ const faqs = [
     font-weight: 400;
     color: var(--light-gray);
     flex-shrink: 0;
-    transition: transform 0.2s ease;
+    transition: transform 0.3s ease, color 0.3s ease;
   }
 
   details[open] .faq__question::after {
-    content: '−';
+    transform: rotate(45deg);
     color: var(--olive);
+  }
+
+  .faq__answer-wrap {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.35s ease;
+    overflow: hidden;
+  }
+
+  details[open] .faq__answer-wrap {
+    grid-template-rows: 1fr;
+  }
+
+  .faq__answer-wrap > .faq__answer {
+    min-height: 0;
+    overflow: hidden;
   }
 
   .faq__answer {

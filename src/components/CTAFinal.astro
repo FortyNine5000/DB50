@@ -1,17 +1,18 @@
 ---
-interface Props {
-  checkoutUrl: string;
-}
-const { checkoutUrl } = Astro.props;
 ---
 
-<section class="cta-final section reveal" id="purchase">
+<section class="cta-final section reveal">
   <div class="cta-final__inner container">
-    <h2 class="cta-final__headline">30 WORKOUTS. ONE PAIR OF DUMBBELLS.</h2>
-    <p class="cta-final__sub-headline">NO GYM. NO APP. NO SUBSCRIPTION.</p>
-    <p class="cta-final__tagline">Simple setup. Tough sessions.</p>
-    <a href={checkoutUrl} class="cta-button cta-final__button">GET THE FIFTY STANDARD — $29</a>
-    <p class="cta-final__fine-print">One payment. Yours forever. 30-day money-back guarantee.</p>
+    <h2 class="cta-final__headline">ONE HARD MONTH. ONE PAIR OF DUMBBELLS.</h2>
+    <p class="cta-final__sub-headline">START THE STANDARD.</p>
+    <form class="cta-final__form" action="https://buttondown.com/api/emails/embed-subscribe/DB50" method="post">
+      <input type="hidden" value="1" name="embed" />
+      <input type="email" name="email" class="cta-final__input" placeholder="Your email" required />
+      <button type="submit" class="cta-final__notify">GET NOTIFIED</button>
+    </form>
+    <p class="cta-final__launch-note">Launching soon. Enter your email to be first in line.</p>
+    <p class="cta-final__credibility">Designed, tested, and programmed by a strength and conditioning practitioner.</p>
+    <p class="cta-final__fine-print">One payment. No subscription. 30-day money-back guarantee.</p>
   </div>
 </section>
 
@@ -30,39 +31,86 @@ const { checkoutUrl } = Astro.props;
   .cta-final__sub-headline {
     font-family: var(--font-headline);
     font-weight: 700;
-    font-size: clamp(1.3rem, 3.5vw, 2.2rem);
+    font-size: clamp(0.85rem, 1.5vw, 1rem);
     text-transform: uppercase;
-    letter-spacing: -0.01em;
-    line-height: 0.95;
-    color: var(--charcoal);
-    margin-bottom: 24px;
-  }
-
-  .cta-final__tagline {
-    font-family: var(--font-body);
-    font-size: clamp(1rem, 2vw, 1.15rem);
-    color: var(--warm-gray);
+    letter-spacing: 0.15em;
+    color: var(--olive);
     margin-bottom: 32px;
   }
 
-  .cta-final__button {
+  .cta-final__form {
+    display: flex;
+    max-width: 420px;
+    width: 100%;
+  }
+
+  .cta-final__input {
+    flex: 1;
+    border: 1px solid var(--border);
+    border-right: none;
+    background-color: var(--bg-primary);
+    padding: 14px 18px;
+    font-family: var(--font-body);
     font-size: 15px;
-    padding: 18px 44px;
+    color: var(--charcoal);
+    outline: none;
+    transition: border-color 0.2s ease;
+  }
+
+  .cta-final__input::placeholder {
+    color: var(--light-gray);
+  }
+
+  .cta-final__input:focus {
+    border-color: var(--olive);
+  }
+
+  .cta-final__notify {
+    background-color: var(--rust);
+    color: var(--button-text);
+    font-family: var(--font-headline);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 14px 28px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    white-space: nowrap;
+  }
+
+  .cta-final__notify:hover {
+    background-color: var(--rust-hover);
+  }
+
+  .cta-final__launch-note {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--light-gray);
+    margin-top: 12px;
+    letter-spacing: 0.02em;
+  }
+
+  .cta-final__credibility {
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-style: italic;
+    color: var(--light-gray);
+    margin-top: 24px;
   }
 
   .cta-final__fine-print {
     font-family: var(--font-mono);
     font-size: 12px;
     color: var(--light-gray);
-    margin-top: 16px;
+    margin-top: 8px;
     letter-spacing: 0.02em;
   }
 
   @media (max-width: 768px) {
-    .cta-final__button {
-      width: 100%;
-      text-align: center;
-      max-width: 400px;
+    .cta-final__form {
+      max-width: 100%;
     }
   }
 </style>
