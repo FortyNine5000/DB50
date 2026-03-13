@@ -10,6 +10,7 @@ interface Block {
 }
 
 interface Props {
+  week: number;
   day: number;
   total: number;
   duration: string;
@@ -20,12 +21,12 @@ interface Props {
   note: string;
 }
 
-const { day, total, duration, label, blocks, thenBlock, afterNote, note } = Astro.props;
+const { week, day, total, duration, label, blocks, thenBlock, afterNote, note } = Astro.props;
 ---
 
 <div class="card">
   <div class="card__header">
-    <span class="card__day">DAY {day} / {total}</span>
+    <span class="card__day">WEEK {week} — DAY {day} / {total}</span>
     <span class="card__time">{duration}</span>
   </div>
   <span class="card__label">{label}</span>

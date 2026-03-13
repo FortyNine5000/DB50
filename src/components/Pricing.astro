@@ -1,0 +1,218 @@
+---
+interface Props {
+  checkoutUrl: string;
+}
+const { checkoutUrl } = Astro.props;
+---
+
+<section class="pricing section section--secondary reveal" id="purchase">
+  <div class="container">
+    <span class="section-label">CHOOSE YOUR FORMAT</span>
+    <div class="pricing__grid">
+      <div class="pricing__card">
+        <span class="pricing__title">DIGITAL</span>
+        <span class="pricing__price">$29</span>
+        <p class="pricing__desc">The full 30-session program as a premium PDF. Instant download. Start today.</p>
+        <ul class="pricing__list">
+          <li>30 structured sessions</li>
+          <li>Movement notes and demo links</li>
+          <li>Scaling options (25–50 lb)</li>
+          <li>Printable training log</li>
+          <li>Warm-up guidance</li>
+        </ul>
+        <a href={checkoutUrl} class="cta-button pricing__cta">START THE STANDARD — $29</a>
+      </div>
+      <div class="pricing__card pricing__card--featured">
+        <span class="pricing__badge">RECOMMENDED</span>
+        <span class="pricing__title">DIGITAL + PRINTED FIELD MANUAL</span>
+        <span class="pricing__price">$49</span>
+        <p class="pricing__desc">Everything in Digital, plus a physical field manual shipped to your door.</p>
+        <ul class="pricing__list">
+          <li>Full printed booklet on uncoated stock</li>
+          <li>Designed to be marked up, carried, and used</li>
+          <li>Includes daily log pages</li>
+          <li>Ships in 5–7 business days</li>
+        </ul>
+        <span class="pricing__coming-soon">COMING SOON</span>
+        <form class="pricing__notify-form" action="#" method="post">
+          <input type="email" class="pricing__notify-input" placeholder="Your email" required />
+          <button type="submit" class="pricing__notify-btn">NOTIFY ME</button>
+        </form>
+        <p class="pricing__notify-caption">The printed field manual ships in Spring 2026.</p>
+      </div>
+    </div>
+    <p class="pricing__guarantee">One payment. No subscription. 30-day money-back guarantee.</p>
+  </div>
+</section>
+
+<style>
+  .pricing__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 40px;
+  }
+
+  .pricing__card {
+    background-color: #FAF9F6;
+    border: 1px solid var(--border);
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .pricing__card--featured {
+    border-left: 4px solid var(--olive);
+  }
+
+  .pricing__badge {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: var(--olive);
+    margin-bottom: 12px;
+  }
+
+  .pricing__title {
+    font-family: var(--font-headline);
+    font-weight: 800;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--charcoal);
+    margin-bottom: 8px;
+  }
+
+  .pricing__price {
+    font-family: var(--font-headline);
+    font-weight: 900;
+    font-size: clamp(2rem, 4vw, 2.5rem);
+    color: var(--charcoal);
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+
+  .pricing__desc {
+    font-family: var(--font-body);
+    font-size: 15px;
+    color: var(--warm-gray);
+    line-height: 1.5;
+    margin-bottom: 20px;
+  }
+
+  .pricing__list {
+    list-style: none;
+    margin-bottom: 28px;
+    flex-grow: 1;
+  }
+
+  .pricing__list li {
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--charcoal);
+    padding: 4px 0 4px 16px;
+    position: relative;
+  }
+
+  .pricing__list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 11px;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: var(--olive);
+  }
+
+  .pricing__cta {
+    font-size: 15px;
+    text-align: center;
+    width: 100%;
+  }
+
+  .pricing__coming-soon {
+    font-family: var(--font-headline);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.08em;
+    color: var(--light-gray);
+    text-align: center;
+    padding: 14px 0;
+    border: 1px solid var(--border);
+    margin-bottom: 16px;
+  }
+
+  .pricing__notify-form {
+    display: flex;
+    width: 100%;
+  }
+
+  .pricing__notify-input {
+    flex: 1;
+    border: 1px solid var(--border);
+    border-right: none;
+    background-color: var(--bg-primary);
+    padding: 10px 14px;
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: var(--charcoal);
+    outline: none;
+    transition: border-color 0.2s ease;
+  }
+
+  .pricing__notify-input::placeholder {
+    color: var(--light-gray);
+  }
+
+  .pricing__notify-input:focus {
+    border-color: var(--olive);
+  }
+
+  .pricing__notify-btn {
+    background-color: var(--rust);
+    color: var(--button-text);
+    font-family: var(--font-headline);
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 10px 16px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    white-space: nowrap;
+  }
+
+  .pricing__notify-btn:hover {
+    background-color: var(--rust-hover);
+  }
+
+  .pricing__notify-caption {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--light-gray);
+    margin-top: 8px;
+    letter-spacing: 0.02em;
+  }
+
+  .pricing__guarantee {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--light-gray);
+    text-align: center;
+    margin-top: 28px;
+    letter-spacing: 0.02em;
+  }
+
+  @media (max-width: 768px) {
+    .pricing__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .pricing__card--featured {
+      order: -1;
+    }
+  }
+</style>

@@ -1,0 +1,56 @@
+---
+const days = Array.from({ length: 30 }, (_, i) => i + 1);
+---
+
+<section class="finish-line section reveal">
+  <div class="container">
+    <span class="section-label">THE FINISH LINE</span>
+    <h2>Day 30 is the last day. When you're done, you're done.</h2>
+    <p class="text-body finish-line__body">
+      This is not an ongoing subscription. Not an infinite content library. Not a program that quietly hopes you'll keep paying.
+    </p>
+    <p class="text-body finish-line__body">
+      It's 30 sessions with a start and an end. Complete them in a month. Log every one. When you finish, you've met the standard.
+    </p>
+    <div class="finish-line__progress">
+      {days.map((day) => (
+        <div class={`finish-line__day ${day <= 28 ? 'finish-line__day--filled' : ''}`} />
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .finish-line__body {
+    margin-bottom: 12px;
+  }
+
+  .finish-line__body:last-of-type {
+    margin-bottom: 40px;
+  }
+
+  .finish-line__progress {
+    display: grid;
+    grid-template-columns: repeat(30, 1fr);
+    gap: 3px;
+    max-width: 500px;
+  }
+
+  .finish-line__day {
+    aspect-ratio: 1;
+    border: 1px solid var(--border);
+  }
+
+  .finish-line__day--filled {
+    background-color: var(--charcoal);
+    border-color: var(--charcoal);
+  }
+
+  @media (max-width: 768px) {
+    .finish-line__progress {
+      grid-template-columns: repeat(15, 1fr);
+      gap: 3px;
+      max-width: 300px;
+    }
+  }
+</style>

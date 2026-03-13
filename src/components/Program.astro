@@ -3,6 +3,7 @@ import ProductCover from './ProductCover.astro';
 import WorkoutCard from './WorkoutCard.astro';
 
 const day3 = {
+  week: 1,
   day: 3,
   total: 30,
   duration: '~22 min',
@@ -23,6 +24,7 @@ const day3 = {
 };
 
 const day15 = {
+  week: 3,
   day: 15,
   total: 30,
   duration: '~28 min',
@@ -42,6 +44,7 @@ const day15 = {
 };
 
 const day28 = {
+  week: 4,
   day: 28,
   total: 30,
   duration: '~38 min',
@@ -69,10 +72,13 @@ const day28 = {
 
 <section class="program section section--secondary reveal">
   <div class="container">
-    <span class="section-label">THE PROGRAM</span>
-    <h2 class="program__heading">A month of hard work that ramps.</h2>
+    <span class="section-label">THE CHALLENGE</span>
+    <h2 class="program__heading">It gets harder every week. That's the point.</h2>
     <p class="text-body program__body">
-      The Fifty Standard is a 30-workout training block built around bodyweight and one pair of 50 lb dumbbells. It's made for strength, lungs, and durability without a full gym, a subscription stack, or a pile of equipment.
+      The Fifty Standard is a four-week training challenge built around bodyweight and one pair of 50 lb dumbbells. Each week is harder than the last. The sessions mix strength and conditioning into single blocks of work — no separate parts, no filler.
+    </p>
+    <p class="text-body program__body program__body--closer">
+      You start on Day 1. You finish on Day 30. That's the standard.
     </p>
     <div class="program__cards">
       <div class="reveal">
@@ -87,7 +93,7 @@ const day28 = {
     </div>
     <div class="program__cover-wrap reveal">
       <ProductCover />
-      <span class="program__cover-caption">Edition 01 — Premium PDF — 2026</span>
+      <span class="program__cover-caption">Edition 01 — 2026</span>
     </div>
   </div>
 </section>
@@ -98,6 +104,11 @@ const day28 = {
   }
 
   .program__body {
+    margin-bottom: 48px;
+  }
+
+  .program__body--closer {
+    margin-top: -36px;
     margin-bottom: 48px;
   }
 
