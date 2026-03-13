@@ -1,18 +1,16 @@
 ---
-interface Props {
-  checkoutUrl: string;
-}
-const { checkoutUrl } = Astro.props;
 ---
 
 <section class="cta-final section reveal">
   <div class="cta-final__inner container">
     <h2 class="cta-final__headline">ONE HARD MONTH. ONE PAIR OF DUMBBELLS.</h2>
     <p class="cta-final__sub-headline">START THE STANDARD.</p>
-    <div class="cta-final__buttons">
-      <a href={checkoutUrl} class="cta-button cta-final__button">DIGITAL — $29</a>
-    </div>
-    <p class="cta-final__field-manual">Printed field manual edition coming soon.</p>
+    <form class="cta-final__form" action="https://buttondown.com/api/emails/embed-subscribe/YOUR-USERNAME" method="post">
+      <input type="hidden" value="1" name="embed" />
+      <input type="email" name="email" class="cta-final__input" placeholder="Your email" required />
+      <button type="submit" class="cta-final__notify">GET NOTIFIED</button>
+    </form>
+    <p class="cta-final__launch-note">Launching soon. Enter your email to be first in line.</p>
     <p class="cta-final__credibility">Designed, tested, and programmed by a strength and conditioning practitioner.</p>
     <p class="cta-final__fine-print">One payment. No subscription. 30-day money-back guarantee.</p>
   </div>
@@ -40,20 +38,53 @@ const { checkoutUrl } = Astro.props;
     margin-bottom: 32px;
   }
 
-  .cta-final__buttons {
+  .cta-final__form {
     display: flex;
-    gap: 16px;
-    align-items: center;
-    flex-wrap: wrap;
-    justify-content: center;
+    max-width: 420px;
+    width: 100%;
   }
 
-  .cta-final__button {
-    font-size: 18px;
-    padding: 20px 52px;
+  .cta-final__input {
+    flex: 1;
+    border: 1px solid var(--border);
+    border-right: none;
+    background-color: var(--bg-primary);
+    padding: 14px 18px;
+    font-family: var(--font-body);
+    font-size: 15px;
+    color: var(--charcoal);
+    outline: none;
+    transition: border-color 0.2s ease;
   }
 
-  .cta-final__field-manual {
+  .cta-final__input::placeholder {
+    color: var(--light-gray);
+  }
+
+  .cta-final__input:focus {
+    border-color: var(--olive);
+  }
+
+  .cta-final__notify {
+    background-color: var(--rust);
+    color: var(--button-text);
+    font-family: var(--font-headline);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 14px 28px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    white-space: nowrap;
+  }
+
+  .cta-final__notify:hover {
+    background-color: var(--rust-hover);
+  }
+
+  .cta-final__launch-note {
     font-family: var(--font-mono);
     font-size: 12px;
     color: var(--light-gray);
@@ -78,15 +109,8 @@ const { checkoutUrl } = Astro.props;
   }
 
   @media (max-width: 768px) {
-    .cta-final__buttons {
-      flex-direction: column;
-      width: 100%;
-    }
-
-    .cta-final__button {
-      width: 100%;
-      text-align: center;
-      max-width: 400px;
+    .cta-final__form {
+      max-width: 100%;
     }
   }
 </style>

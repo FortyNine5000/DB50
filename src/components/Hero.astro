@@ -1,8 +1,5 @@
 ---
-interface Props {
-  checkoutUrl: string;
-}
-const { checkoutUrl } = Astro.props;
+// No props needed — hero uses inline email capture in pre-launch mode
 ---
 
 <section class="hero section">
@@ -15,8 +12,12 @@ const { checkoutUrl } = Astro.props;
       When you finish, you've done the work.
     </p>
     <p class="hero__edge hero-stagger">SIMPLE SETUP. TOUGH SESSIONS.</p>
-    <a href={checkoutUrl} class="cta-button hero-stagger">START THE STANDARD — $29</a>
-    <span class="hero__price hero-stagger">One payment. Yours forever.</span>
+    <form class="hero__form hero-stagger" action="https://buttondown.com/api/emails/embed-subscribe/YOUR-USERNAME" method="post">
+      <input type="hidden" value="1" name="embed" />
+      <input type="email" name="email" class="hero__input" placeholder="Your email" required />
+      <button type="submit" class="hero__notify">GET NOTIFIED</button>
+    </form>
+    <span class="hero__price hero-stagger">Launching soon. Be the first to know.</span>
   </div>
 </section>
 
@@ -40,10 +41,6 @@ const { checkoutUrl } = Astro.props;
     letter-spacing: -0.02em;
     text-shadow: 0 1px 0 rgba(0, 0, 0, 0.04);
     margin-bottom: 24px;
-  }
-
-  .hero .cta-button {
-    font-size: 17px;
   }
 
   .hero__tagline {
@@ -74,6 +71,52 @@ const { checkoutUrl } = Astro.props;
     margin-bottom: 32px;
   }
 
+  .hero__form {
+    display: flex;
+    max-width: 420px;
+    width: 100%;
+  }
+
+  .hero__input {
+    flex: 1;
+    border: 1px solid var(--border);
+    border-right: none;
+    background-color: var(--bg-primary);
+    padding: 14px 18px;
+    font-family: var(--font-body);
+    font-size: 15px;
+    color: var(--charcoal);
+    outline: none;
+    transition: border-color 0.2s ease;
+  }
+
+  .hero__input::placeholder {
+    color: var(--light-gray);
+  }
+
+  .hero__input:focus {
+    border-color: var(--olive);
+  }
+
+  .hero__notify {
+    background-color: var(--rust);
+    color: var(--button-text);
+    font-family: var(--font-headline);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 14px 28px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    white-space: nowrap;
+  }
+
+  .hero__notify:hover {
+    background-color: var(--rust-hover);
+  }
+
   .hero__price {
     display: block;
     font-family: var(--font-mono);
@@ -87,6 +130,10 @@ const { checkoutUrl } = Astro.props;
     .hero {
       padding-top: 120px;
       padding-bottom: 48px;
+    }
+
+    .hero__form {
+      max-width: 100%;
     }
   }
 </style>

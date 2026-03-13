@@ -1,8 +1,4 @@
 ---
-interface Props {
-  checkoutUrl: string;
-}
-const { checkoutUrl } = Astro.props;
 ---
 
 <section class="pricing section section--secondary reveal" id="purchase">
@@ -12,7 +8,7 @@ const { checkoutUrl } = Astro.props;
       <div class="pricing__card">
         <span class="pricing__title">DIGITAL</span>
         <span class="pricing__price">$29</span>
-        <p class="pricing__desc">The full 30-session program as a premium PDF. Instant download. Start today.</p>
+        <p class="pricing__desc">The full 30-session program as a premium PDF. Instant download.</p>
         <ul class="pricing__list">
           <li>30 structured sessions</li>
           <li>Movement notes and demo links</li>
@@ -20,7 +16,14 @@ const { checkoutUrl } = Astro.props;
           <li>Printable training log</li>
           <li>Warm-up guidance</li>
         </ul>
-        <a href={checkoutUrl} class="cta-button pricing__cta">START THE STANDARD — $29</a>
+        <span class="pricing__coming-soon">LAUNCHING SOON</span>
+        <form class="pricing__notify-form" action="https://buttondown.com/api/emails/embed-subscribe/YOUR-USERNAME" method="post">
+          <input type="hidden" value="1" name="embed" />
+          <input type="hidden" value="digital" name="tag" />
+          <input type="email" name="email" class="pricing__notify-input" placeholder="Your email" required />
+          <button type="submit" class="pricing__notify-btn">NOTIFY ME</button>
+        </form>
+        <p class="pricing__notify-caption">Be the first to know when it drops.</p>
       </div>
       <div class="pricing__card pricing__card--featured">
         <span class="pricing__badge">RECOMMENDED</span>
@@ -34,8 +37,10 @@ const { checkoutUrl } = Astro.props;
           <li>Ships in 5–7 business days</li>
         </ul>
         <span class="pricing__coming-soon">COMING SOON</span>
-        <form class="pricing__notify-form" action="#" method="post">
-          <input type="email" class="pricing__notify-input" placeholder="Your email" required />
+        <form class="pricing__notify-form" action="https://buttondown.com/api/emails/embed-subscribe/YOUR-USERNAME" method="post">
+          <input type="hidden" value="1" name="embed" />
+          <input type="hidden" value="field-manual" name="tag" />
+          <input type="email" name="email" class="pricing__notify-input" placeholder="Your email" required />
           <button type="submit" class="pricing__notify-btn">NOTIFY ME</button>
         </form>
         <p class="pricing__notify-caption">The printed field manual ships in Spring 2026.</p>
@@ -124,12 +129,6 @@ const { checkoutUrl } = Astro.props;
     height: 5px;
     border-radius: 50%;
     background-color: var(--olive);
-  }
-
-  .pricing__cta {
-    font-size: 15px;
-    text-align: center;
-    width: 100%;
   }
 
   .pricing__coming-soon {
