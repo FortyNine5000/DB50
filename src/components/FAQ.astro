@@ -29,6 +29,7 @@ const faqs = [
 
 <section class="faq section section--secondary reveal">
   <div class="container">
+    <p class="faq__intro">This is not a random collection of workouts. Not an app. Not a subscription. Not a 90-day body transformation. It's 30 sessions of structured training with a finish line.</p>
     <span class="section-label">QUESTIONS</span>
     <div class="faq__list">
       {faqs.map((faq) => (
@@ -44,6 +45,15 @@ const faqs = [
 </section>
 
 <style>
+  .faq__intro {
+    font-family: var(--font-body);
+    font-size: 17px;
+    color: var(--warm-gray);
+    max-width: var(--text-width);
+    margin-bottom: 32px;
+    line-height: 1.6;
+  }
+
   .faq__list {
     max-width: 640px;
   }

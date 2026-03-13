@@ -1,0 +1,186 @@
+---
+interface Exercise {
+  name: string;
+  reps: string;
+}
+
+interface Block {
+  heading?: string;
+  exercises: Exercise[];
+}
+
+interface Props {
+  day: number;
+  total: number;
+  duration: string;
+  label: string;
+  blocks: Block[];
+  thenBlock?: Block;
+  afterNote?: string;
+  note: string;
+}
+
+const { day, total, duration, label, blocks, thenBlock, afterNote, note } = Astro.props;
+---
+
+<div class="card">
+  <div class="card__header">
+    <span class="card__day">DAY {day} / {total}</span>
+    <span class="card__time">{duration}</span>
+  </div>
+  <span class="card__label">{label}</span>
+  {blocks.map((block) => (
+    <div class="card__block">
+      {block.heading && <span class="card__rounds">{block.heading}</span>}
+      <div class="card__exercises">
+        {block.exercises.map((ex) => (
+          <div class="card__exercise">
+            <span class="card__movement">{ex.name}</span>
+            <span class="card__reps">{ex.reps}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  ))}
+  {afterNote && <p class="card__after-note">{afterNote}</p>}
+  {thenBlock && (
+    <>
+      <div class="card__divider">Then</div>
+      <div class="card__block">
+        {thenBlock.heading && <span class="card__rounds">{thenBlock.heading}</span>}
+        <div class="card__exercises">
+          {thenBlock.exercises.map((ex) => (
+            <div class="card__exercise">
+              <span class="card__movement">{ex.name}</span>
+              <span class="card__reps">{ex.reps}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </>
+  )}
+  <p class="card__note">{note}</p>
+</div>
+
+<style>
+  .card {
+    background-color: #FAF9F6;
+    border: 1px solid var(--border);
+    border-top: 2px solid var(--charcoal);
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .card__day {
+    font-family: var(--font-headline);
+    font-weight: 800;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--charcoal);
+  }
+
+  .card__time {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--light-gray);
+  }
+
+  .card__label {
+    font-family: var(--font-headline);
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--olive);
+    margin-bottom: 12px;
+  }
+
+  .card__block {
+    margin-bottom: 8px;
+  }
+
+  .card__rounds {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: var(--charcoal);
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .card__exercises {
+    padding-left: 16px;
+  }
+
+  .card__exercise {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 2px 0;
+  }
+
+  .card__movement {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    color: var(--charcoal);
+  }
+
+  .card__reps {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--warm-gray);
+    white-space: nowrap;
+    margin-left: 8px;
+  }
+
+  .card__after-note {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    color: var(--warm-gray);
+    font-style: italic;
+    margin-top: 4px;
+    padding-left: 16px;
+  }
+
+  .card__divider {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--light-gray);
+    text-align: center;
+    padding: 6px 0;
+    position: relative;
+  }
+
+  .card__divider::before,
+  .card__divider::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    height: 1px;
+    width: 25%;
+    background-color: var(--border);
+  }
+
+  .card__divider::before { left: 10%; }
+  .card__divider::after { right: 10%; }
+
+  .card__note {
+    font-family: var(--font-body);
+    font-style: italic;
+    font-size: 0.72rem;
+    color: var(--light-gray);
+    margin-top: auto;
+    padding-top: 16px;
+  }
+</style>

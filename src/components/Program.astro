@@ -1,6 +1,70 @@
 ---
 import ProductCover from './ProductCover.astro';
-import SamplePage from './SamplePage.astro';
+import WorkoutCard from './WorkoutCard.astro';
+
+const day3 = {
+  day: 3,
+  total: 30,
+  duration: '~22 min',
+  label: 'FOR TIME',
+  blocks: [
+    {
+      heading: '3 rounds:',
+      exercises: [
+        { name: 'Dumbbell Goblet Squat', reps: '— 12' },
+        { name: 'Push-Up', reps: '— 10' },
+        { name: 'Dumbbell Bent-Over Row', reps: '— 10' },
+        { name: '200m Run or 40 High Knees', reps: '' },
+      ],
+    },
+  ],
+  afterNote: 'Rest 2:00 between rounds.',
+  note: 'The early days build your base.',
+};
+
+const day15 = {
+  day: 15,
+  total: 30,
+  duration: '~28 min',
+  label: 'AMRAP 25 MINUTES',
+  blocks: [
+    {
+      exercises: [
+        { name: 'Dumbbell Thruster', reps: '— 8' },
+        { name: 'Burpee', reps: '— 6' },
+        { name: 'Farmer Carry', reps: '— 40m' },
+        { name: 'Dumbbell Renegade Row', reps: '— 8' },
+        { name: 'Air Squat', reps: '— 15' },
+      ],
+    },
+  ],
+  note: 'By now you know what 50 lbs feels like at the end of a round.',
+};
+
+const day28 = {
+  day: 28,
+  total: 30,
+  duration: '~38 min',
+  label: '5 ROUNDS FOR TIME',
+  blocks: [
+    {
+      exercises: [
+        { name: 'Dumbbell Clean & Press', reps: '— 8' },
+        { name: 'Burpee', reps: '— 12' },
+        { name: 'Dumbbell Front Squat', reps: '— 10' },
+        { name: 'Push-Up', reps: '— 15' },
+        { name: 'Farmer Carry', reps: '— 60m' },
+        { name: 'Dumbbell Row', reps: '— 10 each' },
+      ],
+    },
+  ],
+  thenBlock: {
+    exercises: [
+      { name: '100 Air Squats', reps: '— partition however you want' },
+    ],
+  },
+  note: 'Day 1 is not this. Day 30 is worse.',
+};
 ---
 
 <section class="program section section--secondary reveal">
@@ -10,13 +74,20 @@ import SamplePage from './SamplePage.astro';
     <p class="text-body program__body">
       The Fifty Standard is a 30-workout training block built around bodyweight and one pair of 50 lb dumbbells. It's made for strength, lungs, and durability without a full gym, a subscription stack, or a pile of equipment.
     </p>
-    <div class="program__mockups">
-      <div class="reveal program__mockup-left">
-        <ProductCover />
+    <div class="program__cards">
+      <div class="reveal">
+        <WorkoutCard {...day3} />
       </div>
-      <div class="reveal program__mockup-right">
-        <SamplePage />
+      <div class="reveal" style="transition-delay: 0.1s">
+        <WorkoutCard {...day15} />
       </div>
+      <div class="reveal" style="transition-delay: 0.2s">
+        <WorkoutCard {...day28} />
+      </div>
+    </div>
+    <div class="program__cover-wrap reveal">
+      <ProductCover />
+      <span class="program__cover-caption">Edition 01 — Premium PDF — 2026</span>
     </div>
   </div>
 </section>
@@ -30,29 +101,32 @@ import SamplePage from './SamplePage.astro';
     margin-bottom: 48px;
   }
 
-  .program__mockups {
+  .program__cards {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-    justify-items: center;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
     align-items: start;
   }
 
-  .program__mockup-left {
+  .program__cover-wrap {
+    margin-top: 48px;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
   }
 
-  .program__mockup-right {
-    display: flex;
-    justify-content: center;
-    transition-delay: 0.15s;
+  .program__cover-caption {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--light-gray);
+    margin-top: 12px;
+    letter-spacing: 0.04em;
   }
 
   @media (max-width: 768px) {
-    .program__mockups {
+    .program__cards {
       grid-template-columns: 1fr;
-      gap: 32px;
+      gap: 20px;
     }
   }
 </style>

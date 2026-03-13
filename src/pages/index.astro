@@ -4,7 +4,9 @@ import Nav from '../components/Nav.astro';
 import Hero from '../components/Hero.astro';
 import SpecRow from '../components/SpecRow.astro';
 import Program from '../components/Program.astro';
+import Setup from '../components/Setup.astro';
 import Included from '../components/Included.astro';
+import PhotoPlaceholder from '../components/PhotoPlaceholder.astro';
 import FAQ from '../components/FAQ.astro';
 import CTAFinal from '../components/CTAFinal.astro';
 import Footer from '../components/Footer.astro';
@@ -21,8 +23,10 @@ const checkoutUrl = '#purchase';
     <hr class="gold-rule" />
     <Program />
     <hr class="gold-rule" />
-    <Included />
+    <Setup />
     <hr class="gold-rule" />
+    <Included />
+    <PhotoPlaceholder />
     <FAQ />
     <hr class="gold-rule" />
     <CTAFinal checkoutUrl={checkoutUrl} />
