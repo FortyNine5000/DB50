@@ -2,12 +2,34 @@
 interface Props {
   title?: string;
   description?: string;
+  canonicalPath?: string;
+  ogType?: 'website' | 'article';
+  noindex?: boolean;
+  schema?: object | object[];
+  publishedDate?: string;
+  modifiedDate?: string;
+  author?: string;
 }
+
+const siteUrl = 'https://thefiftystandard.com';
 
 const {
   title = 'The Fifty Standard — One Hard Month',
   description = 'A four-week training challenge built around bodyweight and one pair of 50 lb dumbbells. Start on Day 1. Finish on Day 30. $29.',
+  canonicalPath,
+  ogType = 'website',
+  noindex = false,
+  schema,
+  publishedDate,
+  modifiedDate,
+  author,
 } = Astro.props;
+
+const canonical = canonicalPath ? `${siteUrl}${canonicalPath}` : siteUrl;
+
+const schemaArray = schema
+  ? Array.isArray(schema) ? schema : [schema]
+  : [];
 ---
 
 <!doctype html>
@@ -17,14 +39,20 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <link rel="canonical" href="https://thefiftystandard.com" />
+    <link rel="canonical" href={canonical} />
+
+    {noindex && <meta name="robots" content="noindex" />}
 
     <!-- Open Graph -->
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:url" content="https://thefiftystandard.com" />
+    <meta property="og:url" content={canonical} />
     <meta property="og:site_name" content="The Fifty Standard" />
+
+    {publishedDate && <meta property="article:published_time" content={publishedDate} />}
+    {modifiedDate && <meta property="article:modified_time" content={modifiedDate} />}
+    {author && <meta property="article:author" content={author} />}
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -42,20 +70,10 @@ const {
       rel="stylesheet"
     />
 
-    <!-- Product Schema -->
-    <script type="application/ld+json" set:html={JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "Product",
-      "name": "The Fifty Standard",
-      "description": "A four-week training challenge built around bodyweight and one pair of 50 lb dumbbells. Start on Day 1. Finish on Day 30.",
-      "offers": {
-        "@type": "Offer",
-        "price": "29.00",
-        "priceCurrency": "USD",
-        "availability": "https://schema.org/PreOrder",
-        "url": "https://thefiftystandard.com"
-      }
-    })} />
+    <!-- Structured Data -->
+    {schemaArray.map((s) => (
+      <script type="application/ld+json" set:html={JSON.stringify(s)} />
+    ))}
   </head>
   <body>
     <slot />
@@ -88,4 +106,5 @@ const {
 
 <style is:global>
   @import '../styles/global.css';
+  @import '../styles/utilities.css';
 </style>

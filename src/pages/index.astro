@@ -11,12 +11,39 @@ import FAQ from '../components/FAQ.astro';
 import CTAFinal from '../components/CTAFinal.astro';
 import Footer from '../components/Footer.astro';
 
-// PRE-LAUNCH MODE: All CTAs are email capture forms via Buttondown.
-// When ready to sell, swap forms back to purchase links:
-//   const checkoutUrl = 'https://your-gumroad-or-lemonsqueezy-url';
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    'name': 'The Fifty Standard',
+    'url': 'https://thefiftystandard.com',
+    'description': 'A four-week training challenge built around bodyweight and one pair of 50 lb dumbbells.',
+    'sameAs': ['https://instagram.com/thefiftystandard'],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    'name': 'The Fifty Standard',
+    'url': 'https://thefiftystandard.com',
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    'name': 'The Fifty Standard',
+    'description': 'A four-week training challenge built around bodyweight and one pair of 50 lb dumbbells. Start on Day 1. Finish on Day 30.',
+    'brand': { '@type': 'Organization', 'name': 'The Fifty Standard' },
+    'offers': {
+      '@type': 'Offer',
+      'price': '29.00',
+      'priceCurrency': 'USD',
+      'availability': 'https://schema.org/PreOrder',
+      'url': 'https://thefiftystandard.com',
+    },
+  },
+];
 ---
 
-<Layout>
+<Layout schema={schema}>
   <Nav />
   <main>
     <Hero />

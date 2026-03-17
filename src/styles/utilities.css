@@ -1,0 +1,33 @@
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.max-w-text {
+  max-width: var(--text-width);
+}
+
+.mt-section {
+  margin-top: var(--section-pad);
+}
+
+@media (max-width: 768px) {
+  .mt-section {
+    margin-top: var(--section-pad-mobile);
+  }
+}

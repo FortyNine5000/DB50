@@ -1,0 +1,71 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import PageHero from '../components/PageHero.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import TestimonialGrid from '../components/TestimonialGrid.astro';
+import EmailCapture from '../components/EmailCapture.astro';
+import CTABanner from '../components/CTABanner.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout
+  title="Results — The Fifty Standard"
+  description="See what happens when people complete The Fifty Standard. Real results from real participants."
+  canonicalPath="/results"
+>
+  <Nav />
+  <main>
+    <PageHero
+      label="RESULTS"
+      headline="What 30 days looks like."
+      subline="Edition 01 is launching soon. This page will feature real results from people who complete the challenge."
+    />
+    <div class="container">
+      <Breadcrumbs items={[
+        { label: 'Home', href: '/' },
+        { label: 'Results' },
+      ]} />
+    </div>
+
+    <section class="results-proof section section--secondary reveal">
+      <div class="container">
+        <TestimonialGrid heading="COMING SOON" />
+      </div>
+    </section>
+
+    <section class="results-submit section reveal">
+      <div class="container">
+        <span class="section-label">COMPLETED THE CHALLENGE?</span>
+        <h2 class="results-submit__heading">Share your results.</h2>
+        <p class="text-body" style="margin-bottom: 24px;">
+          Finished all 30 sessions? We want to hear about it. Sign up below and we'll reach out about featuring your experience.
+        </p>
+        <EmailCapture
+          variant="inline"
+          tag="results-submission"
+          buttonText="SUBMIT"
+          caption="We'll email you with next steps."
+        />
+      </div>
+    </section>
+
+    <section class="results-cta section section--secondary reveal">
+      <div class="container">
+        <CTABanner
+          headline="START THE CHALLENGE"
+          subline="30 sessions. 4 weeks. One pair of dumbbells."
+          showEmailCapture={true}
+          emailTag="results-page"
+        />
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .results-submit__heading {
+    margin-bottom: 16px;
+  }
+</style>

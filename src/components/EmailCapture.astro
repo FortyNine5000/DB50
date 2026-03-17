@@ -1,0 +1,121 @@
+---
+interface Props {
+  tag?: string;
+  variant?: 'hero' | 'inline' | 'card' | 'footer';
+  placeholder?: string;
+  buttonText?: string;
+  caption?: string;
+}
+
+const {
+  tag,
+  variant = 'inline',
+  placeholder = 'Your email',
+  buttonText = 'GET NOTIFIED',
+  caption,
+} = Astro.props;
+---
+
+<div class:list={['email-capture', `email-capture--${variant}`]}>
+  <form class="email-capture__form" action="https://buttondown.com/api/emails/embed-subscribe/DB50" method="post">
+    <input type="hidden" value="1" name="embed" />
+    {tag && <input type="hidden" name="tag" value={tag} />}
+    <input type="email" name="email" class="email-capture__input" placeholder={placeholder} required />
+    <button type="submit" class="email-capture__button">{buttonText}</button>
+  </form>
+  {caption && <p class="email-capture__caption">{caption}</p>}
+</div>
+
+<style>
+  .email-capture__form {
+    display: flex;
+    max-width: 420px;
+    width: 100%;
+  }
+
+  .email-capture__input {
+    flex: 1;
+    border: 1px solid var(--border);
+    border-right: none;
+    background-color: var(--bg-primary);
+    padding: 12px 16px;
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--charcoal);
+    outline: none;
+    transition: border-color 0.2s ease;
+  }
+
+  .email-capture__input::placeholder {
+    color: var(--light-gray);
+  }
+
+  .email-capture__input:focus {
+    border-color: var(--olive);
+  }
+
+  .email-capture__button {
+    background-color: var(--rust);
+    color: var(--button-text);
+    font-family: var(--font-headline);
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 12px 24px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    white-space: nowrap;
+  }
+
+  .email-capture__button:hover {
+    background-color: var(--rust-hover);
+  }
+
+  .email-capture__caption {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--light-gray);
+    margin-top: 10px;
+    letter-spacing: 0.02em;
+  }
+
+  /* Variant: hero — centered */
+  .email-capture--hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .email-capture--hero .email-capture__caption {
+    text-align: center;
+  }
+
+  /* Variant: card — full width */
+  .email-capture--card .email-capture__form {
+    max-width: 100%;
+  }
+
+  /* Variant: footer — centered */
+  .email-capture--footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .email-capture--footer .email-capture__caption {
+    text-align: center;
+  }
+
+  @media (max-width: 768px) {
+    .email-capture__button {
+      font-size: 11px;
+      padding: 10px 16px;
+    }
+
+    .email-capture__caption {
+      font-size: 10px;
+    }
+  }
+</style>

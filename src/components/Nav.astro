@@ -1,12 +1,45 @@
 ---
+import { mainNav } from '../data/navigation';
+
+const currentPath = Astro.url.pathname;
 ---
 
 <nav class="nav">
   <div class="nav__inner container">
-    <a href="#" class="nav__brand">THE FIFTY STANDARD</a>
+    <a href="/" class="nav__brand">THE FIFTY STANDARD</a>
+    <button class="nav__toggle" aria-label="Toggle menu" aria-expanded="false">
+      <span class="nav__toggle-bar"></span>
+      <span class="nav__toggle-bar"></span>
+      <span class="nav__toggle-bar"></span>
+    </button>
+    <ul class="nav__menu">
+      {mainNav.map((item) => (
+        <li class="nav__menu-item">
+          <a
+            href={item.href}
+            class:list={['nav__link', { 'nav__link--active': currentPath.startsWith(item.href) }]}
+            aria-current={currentPath.startsWith(item.href) ? 'page' : undefined}
+          >
+            {item.label}
+          </a>
+        </li>
+      ))}
+    </ul>
     <a href="#purchase" class="nav__cta cta-button">GET NOTIFIED</a>
   </div>
 </nav>
+
+<script>
+  const toggle = document.querySelector('.nav__toggle');
+  const menu = document.querySelector('.nav__menu');
+  if (toggle && menu) {
+    toggle.addEventListener('click', () => {
+      const expanded = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', String(!expanded));
+      menu.classList.toggle('nav__menu--open');
+    });
+  }
+</script>
 
 <style>
   .nav {
@@ -32,6 +65,7 @@
     justify-content: space-between;
     align-items: center;
     height: 64px;
+    gap: 32px;
   }
 
   .nav__brand {
@@ -42,14 +76,90 @@
     letter-spacing: 0.12em;
     color: var(--charcoal);
     text-decoration: none;
+    flex-shrink: 0;
+  }
+
+  .nav__menu {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav__link {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--light-gray);
+    text-decoration: none;
+    transition: color 0.2s ease;
+    white-space: nowrap;
+  }
+
+  .nav__link:hover {
+    color: var(--charcoal);
+  }
+
+  .nav__link--active {
+    color: var(--olive);
   }
 
   .nav__cta {
     font-size: 12px;
     padding: 10px 24px;
+    flex-shrink: 0;
+  }
+
+  .nav__toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+  }
+
+  .nav__toggle-bar {
+    display: block;
+    width: 20px;
+    height: 1.5px;
+    background-color: var(--charcoal);
+    transition: transform 0.3s ease, opacity 0.3s ease;
   }
 
   @media (max-width: 768px) {
+    .nav__toggle {
+      display: flex;
+    }
+
+    .nav__menu {
+      display: none;
+      position: absolute;
+      top: 64px;
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      background-color: rgba(244, 241, 235, 0.97);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      padding: 24px var(--side-pad-mobile);
+      gap: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav__menu--open {
+      display: flex;
+    }
+
+    .nav__link {
+      font-size: 12px;
+    }
+
     .nav__cta {
       font-size: 11px;
       padding: 8px 16px;

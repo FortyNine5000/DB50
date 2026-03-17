@@ -1,0 +1,87 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import PageHero from '../components/PageHero.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import EmailCapture from '../components/EmailCapture.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout
+  title="Contact — The Fifty Standard"
+  description="Get in touch with The Fifty Standard team. Questions about the program, partnerships, or press inquiries."
+  canonicalPath="/contact"
+>
+  <Nav />
+  <main>
+    <PageHero
+      label="CONTACT"
+      headline="Get in touch."
+    />
+    <div class="container">
+      <Breadcrumbs items={[
+        { label: 'Home', href: '/' },
+        { label: 'Contact' },
+      ]} />
+    </div>
+
+    <section class="contact-info section reveal">
+      <div class="container">
+        <div class="contact-info__grid">
+          <div class="contact-info__block">
+            <span class="section-label">EMAIL</span>
+            <a href="mailto:hello@thefiftystandard.com" class="contact-info__link">hello@thefiftystandard.com</a>
+          </div>
+          <div class="contact-info__block">
+            <span class="section-label">SOCIAL</span>
+            <a href="https://instagram.com/thefiftystandard" class="contact-info__link" target="_blank" rel="noopener">@thefiftystandard</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact-notify section section--secondary reveal">
+      <div class="container">
+        <span class="section-label">STAY UPDATED</span>
+        <p class="text-body" style="margin-bottom: 24px;">
+          Sign up for launch notifications. No spam. No newsletter. Just product announcements.
+        </p>
+        <EmailCapture
+          variant="inline"
+          tag="contact-page"
+          caption="We only email when something ships."
+        />
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .contact-info__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    max-width: 500px;
+  }
+
+  .contact-info__link {
+    font-family: var(--font-body);
+    font-size: 17px;
+    color: var(--charcoal);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s ease;
+  }
+
+  .contact-info__link:hover {
+    border-bottom-color: var(--rust);
+  }
+
+  @media (max-width: 768px) {
+    .contact-info__grid {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+  }
+</style>

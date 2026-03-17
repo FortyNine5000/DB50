@@ -1,4 +1,6 @@
 ---
+import EmailCapture from './EmailCapture.astro';
+import { footerNav } from '../data/navigation';
 ---
 
 <footer class="footer">
@@ -8,6 +10,11 @@
       <span class="footer__tagline">The pair. The work. The standard.</span>
     </div>
     <div class="footer__col footer__col--center">
+      <nav class="footer__nav" aria-label="Footer navigation">
+        {footerNav.map((item) => (
+          <a href={item.href} class="footer__nav-link">{item.label}</a>
+        ))}
+      </nav>
       <a href="https://instagram.com/thefiftystandard" class="footer__link" target="_blank" rel="noopener">@thefiftystandard</a>
     </div>
     <div class="footer__col footer__col--right">
@@ -15,12 +22,10 @@
     </div>
   </div>
   <div class="footer__email container">
-    <form class="footer__form" action="https://buttondown.com/api/emails/embed-subscribe/DB50" method="post">
-      <input type="hidden" value="1" name="embed" />
-      <input type="email" name="email" class="footer__input" placeholder="Your email" required />
-      <button type="submit" class="footer__notify">NOTIFY ME</button>
-    </form>
-    <p class="footer__caption">Get notified when new editions and the printed field manual drop.</p>
+    <EmailCapture
+      variant="footer"
+      caption="Get notified when new editions and the printed field manual drop."
+    />
   </div>
 </footer>
 
@@ -45,6 +50,8 @@
 
   .footer__col--center {
     text-align: center;
+    align-items: center;
+    gap: 12px;
   }
 
   .footer__col--right {
@@ -65,6 +72,27 @@
     font-style: italic;
     font-size: 13px;
     color: var(--light-gray);
+  }
+
+  .footer__nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 16px;
+    justify-content: center;
+  }
+
+  .footer__nav-link {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--light-gray);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .footer__nav-link:hover {
+    color: var(--charcoal);
   }
 
   .footer__link {
@@ -93,61 +121,6 @@
     align-items: center;
   }
 
-  .footer__form {
-    display: flex;
-    max-width: 400px;
-    width: 100%;
-  }
-
-  .footer__input {
-    flex: 1;
-    border: 1px solid var(--border);
-    border-right: none;
-    background-color: var(--bg-primary);
-    padding: 10px 16px;
-    font-family: var(--font-body);
-    font-size: 14px;
-    color: var(--charcoal);
-    outline: none;
-    transition: border-color 0.2s ease;
-  }
-
-  .footer__input::placeholder {
-    color: var(--light-gray);
-  }
-
-  .footer__input:focus {
-    border-color: var(--olive);
-  }
-
-  .footer__notify {
-    background-color: var(--rust);
-    color: var(--button-text);
-    font-family: var(--font-headline);
-    font-weight: 700;
-    font-size: 12px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-    white-space: nowrap;
-  }
-
-  .footer__notify:hover {
-    background-color: var(--rust-hover);
-  }
-
-  .footer__caption {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    color: var(--light-gray);
-    margin-top: 10px;
-    text-align: center;
-    letter-spacing: 0.02em;
-  }
-
   @media (max-width: 768px) {
     .footer__inner {
       grid-template-columns: 1fr;
@@ -160,12 +133,8 @@
       text-align: center;
     }
 
-    .footer__form {
-      max-width: 100%;
-    }
-
-    .footer__caption {
-      font-size: 10px;
+    .footer__col--center {
+      align-items: center;
     }
   }
 </style>

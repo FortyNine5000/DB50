@@ -1,0 +1,45 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Nav from '../../components/Nav.astro';
+import PageHero from '../../components/PageHero.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import CTABanner from '../../components/CTABanner.astro';
+import Footer from '../../components/Footer.astro';
+---
+
+<Layout
+  title="Learn — The Fifty Standard"
+  description="Training insights, equipment guides, and the thinking behind The Fifty Standard. Built for people who train at home with minimal equipment."
+  canonicalPath="/learn"
+>
+  <Nav />
+  <main>
+    <PageHero
+      label="LEARN"
+      headline="Training with less. Training harder."
+      subline="Articles on home training, dumbbell programming, and the philosophy behind The Fifty Standard."
+    />
+    <div class="container">
+      <Breadcrumbs items={[
+        { label: 'Home', href: '/' },
+        { label: 'Learn' },
+      ]} />
+    </div>
+
+    <section class="learn-list section reveal">
+      <div class="container">
+        <p class="text-body">Articles are coming soon. Sign up below to get notified when we publish new training content.</p>
+        <div style="margin-top: 32px;">
+          <CTABanner
+            headline="STAY UPDATED"
+            subline="New articles and training content delivered to your inbox."
+            showEmailCapture={true}
+            emailTag="learn-page"
+            variant="compact"
+          />
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>

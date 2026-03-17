@@ -1,0 +1,121 @@
+---
+import { founder, social } from '../data/siteConfig';
+
+interface Props {
+  variant?: 'full' | 'compact';
+}
+
+const { variant = 'compact' } = Astro.props;
+---
+
+<div class:list={['founder', `founder--${variant}`]}>
+  <div class="founder__photo">
+    <div class="founder__placeholder">
+      <span class="founder__initials">FS</span>
+    </div>
+  </div>
+  <div class="founder__content">
+    <span class="founder__name">{founder.name}</span>
+    <span class="founder__credential">{founder.credential}</span>
+    {variant === 'full' ? (
+      <>
+        <p class="founder__bio">{founder.bio}</p>
+        <p class="founder__bio">{founder.bioExtended}</p>
+      </>
+    ) : (
+      <p class="founder__bio">{founder.bio}</p>
+    )}
+    {variant === 'compact' && <a href="/about" class="founder__link">About &rarr;</a>}
+  </div>
+</div>
+
+<style>
+  .founder {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+  }
+
+  .founder__photo {
+    flex-shrink: 0;
+  }
+
+  .founder__placeholder {
+    width: 72px;
+    height: 72px;
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .founder--full .founder__placeholder {
+    width: 120px;
+    height: 120px;
+  }
+
+  .founder__initials {
+    font-family: var(--font-headline);
+    font-weight: 700;
+    font-size: 20px;
+    color: var(--light-gray);
+    letter-spacing: 0.05em;
+  }
+
+  .founder--full .founder__initials {
+    font-size: 28px;
+  }
+
+  .founder__content {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .founder__name {
+    font-family: var(--font-headline);
+    font-weight: 700;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--charcoal);
+  }
+
+  .founder__credential {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--olive);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .founder__bio {
+    font-family: var(--font-body);
+    font-size: 15px;
+    color: var(--warm-gray);
+    line-height: 1.6;
+    margin-top: 8px;
+    max-width: var(--text-width);
+  }
+
+  .founder__link {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--rust);
+    text-decoration: none;
+    margin-top: 8px;
+    letter-spacing: 0.04em;
+    transition: color 0.2s ease;
+  }
+
+  .founder__link:hover {
+    color: var(--rust-hover);
+  }
+
+  @media (max-width: 768px) {
+    .founder--full {
+      flex-direction: column;
+    }
+  }
+</style>

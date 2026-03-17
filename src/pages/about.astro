@@ -1,0 +1,99 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import PageHero from '../components/PageHero.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import FounderBlock from '../components/FounderBlock.astro';
+import CTABanner from '../components/CTABanner.astro';
+import Footer from '../components/Footer.astro';
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    'name': 'The Fifty Standard',
+    'jobTitle': 'Strength & conditioning practitioner',
+    'url': 'https://thefiftystandard.com/about',
+  },
+];
+---
+
+<Layout
+  title="About — The Fifty Standard"
+  description="The Fifty Standard started as a personal challenge: build a legitimate four-week training program around nothing but bodyweight and one pair of 50 lb dumbbells."
+  canonicalPath="/about"
+  schema={schema}
+>
+  <Nav />
+  <main>
+    <PageHero
+      label="ABOUT"
+      headline="Why 50 lbs."
+      subline="The Fifty Standard started as a question: could you build a serious, structured training program around the most common piece of equipment in a garage gym?"
+    />
+    <div class="container">
+      <Breadcrumbs items={[
+        { label: 'Home', href: '/' },
+        { label: 'About' },
+      ]} />
+    </div>
+
+    <section class="about-story section reveal">
+      <div class="container">
+        <span class="section-label">THE ORIGIN</span>
+        <h2 class="about-story__heading">One constraint. One standard.</h2>
+        <p class="text-body">
+          Most people own a pair of dumbbells. Usually somewhere between 25 and 50 lbs. They sit in a garage, a basement, or a corner of a spare room. And most training programs ignore them entirely — or treat them as an afterthought.
+        </p>
+        <p class="text-body" style="margin-top: 16px;">
+          The Fifty Standard was designed around that constraint. Not as a workaround for people who can't get to a gym, but as a legitimate format for people who want to train hard with minimal equipment.
+        </p>
+        <p class="text-body" style="margin-top: 16px;">
+          The result: 30 sessions over four weeks. Bodyweight and one pair of dumbbells. Each week harder than the last. A clear start and a clear finish.
+        </p>
+      </div>
+    </section>
+
+    <section class="about-philosophy section section--secondary reveal">
+      <div class="container">
+        <span class="section-label">TRAINING PHILOSOPHY</span>
+        <h2 class="about-philosophy__heading">Hard, simple, finite.</h2>
+        <p class="text-body">
+          Good training doesn't require complexity. It requires consistency, progressive overload, and the willingness to do hard things when you don't feel like it.
+        </p>
+        <p class="text-body" style="margin-top: 16px;">
+          The Fifty Standard isn't a system you follow forever. It's a challenge with a finish line. Four weeks, thirty sessions, done. Then you decide if you want to do it again.
+        </p>
+        <p class="text-body" style="margin-top: 16px;">
+          No app. No subscription. No algorithmic personalization. Just a well-designed program, a pair of dumbbells, and your effort.
+        </p>
+      </div>
+    </section>
+
+    <section class="about-founder section reveal">
+      <div class="container">
+        <span class="section-label">THE FOUNDER</span>
+        <FounderBlock variant="full" />
+      </div>
+    </section>
+
+    <section class="about-cta section section--secondary reveal">
+      <div class="container">
+        <CTABanner
+          headline="SEE THE PROGRAM"
+          subline="30 sessions. 4 weeks. Starting at $29."
+          showEmailCapture={true}
+          emailTag="about-page"
+        />
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .about-story__heading,
+  .about-philosophy__heading {
+    margin-bottom: 20px;
+  }
+</style>

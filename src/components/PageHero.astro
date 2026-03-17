@@ -1,0 +1,44 @@
+---
+interface Props {
+  label?: string;
+  headline: string;
+  subline?: string;
+}
+
+const { label, headline, subline } = Astro.props;
+---
+
+<section class="page-hero">
+  <div class="container">
+    {label && <span class="section-label">{label}</span>}
+    <h1 class="page-hero__headline">{headline}</h1>
+    {subline && <p class="page-hero__subline">{subline}</p>}
+  </div>
+</section>
+
+<style>
+  .page-hero {
+    padding-top: 160px;
+    padding-bottom: var(--section-pad);
+  }
+
+  .page-hero__headline {
+    font-size: clamp(2.2rem, 6vw, 4rem);
+    margin-top: 8px;
+  }
+
+  .page-hero__subline {
+    font-family: var(--font-body);
+    font-size: 18px;
+    color: var(--warm-gray);
+    max-width: var(--text-width);
+    margin-top: 16px;
+    line-height: 1.55;
+  }
+
+  @media (max-width: 768px) {
+    .page-hero {
+      padding-top: 120px;
+    }
+  }
+</style>

@@ -1,0 +1,80 @@
+---
+interface Props {
+  heading?: string;
+}
+
+const { heading = 'WHAT PEOPLE ARE SAYING' } = Astro.props;
+
+const placeholders = [
+  { quote: 'Placeholder testimonial — real results coming soon.', name: 'Participant', context: 'Edition 01' },
+  { quote: 'Placeholder testimonial — real results coming soon.', name: 'Participant', context: 'Edition 01' },
+  { quote: 'Placeholder testimonial — real results coming soon.', name: 'Participant', context: 'Edition 01' },
+];
+---
+
+<div class="testimonials">
+  <span class="section-label">{heading}</span>
+  <div class="testimonials__grid">
+    {placeholders.map((t) => (
+      <div class="testimonials__card">
+        <p class="testimonials__quote">&ldquo;{t.quote}&rdquo;</p>
+        <div class="testimonials__meta">
+          <span class="testimonials__name">{t.name}</span>
+          <span class="testimonials__context">{t.context}</span>
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
+
+<style>
+  .testimonials__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 24px;
+  }
+
+  .testimonials__card {
+    border: 1px solid var(--border);
+    padding: 28px;
+    background-color: var(--bg-primary);
+  }
+
+  .testimonials__quote {
+    font-family: var(--font-body);
+    font-style: italic;
+    font-size: 15px;
+    color: var(--warm-gray);
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+
+  .testimonials__meta {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .testimonials__name {
+    font-family: var(--font-headline);
+    font-weight: 700;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--charcoal);
+  }
+
+  .testimonials__context {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--light-gray);
+    letter-spacing: 0.04em;
+  }
+
+  @media (max-width: 768px) {
+    .testimonials__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

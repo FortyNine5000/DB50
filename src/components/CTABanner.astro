@@ -1,0 +1,65 @@
+---
+import EmailCapture from './EmailCapture.astro';
+
+interface Props {
+  headline: string;
+  subline?: string;
+  primaryHref?: string;
+  primaryLabel?: string;
+  showEmailCapture?: boolean;
+  emailTag?: string;
+  variant?: 'default' | 'compact';
+}
+
+const {
+  headline,
+  subline,
+  primaryHref,
+  primaryLabel = 'SEE THE PROGRAM',
+  showEmailCapture = true,
+  emailTag,
+  variant = 'default',
+} = Astro.props;
+---
+
+<div class:list={['cta-banner', `cta-banner--${variant}`]}>
+  <h3 class="cta-banner__headline">{headline}</h3>
+  {subline && <p class="cta-banner__subline">{subline}</p>}
+  {showEmailCapture ? (
+    <EmailCapture variant="inline" tag={emailTag} />
+  ) : primaryHref ? (
+    <a href={primaryHref} class="cta-button cta-banner__button">{primaryLabel}</a>
+  ) : null}
+</div>
+
+<style>
+  .cta-banner {
+    padding: 48px 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    margin: 48px 0;
+  }
+
+  .cta-banner__headline {
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    margin-bottom: 8px;
+  }
+
+  .cta-banner__subline {
+    font-family: var(--font-body);
+    font-size: 16px;
+    color: var(--warm-gray);
+    margin-bottom: 24px;
+    max-width: var(--text-width);
+  }
+
+  .cta-banner__button {
+    font-size: 13px;
+    padding: 16px 40px;
+  }
+
+  .cta-banner--compact {
+    padding: 32px 0;
+    margin: 32px 0;
+  }
+</style>

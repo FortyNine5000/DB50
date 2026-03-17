@@ -1,0 +1,110 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import PageHero from '../components/PageHero.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import SpecRow from '../components/SpecRow.astro';
+import Program from '../components/Program.astro';
+import FinishLine from '../components/FinishLine.astro';
+import Pricing from '../components/Pricing.astro';
+import Setup from '../components/Setup.astro';
+import FAQ from '../components/FAQ.astro';
+import CTAFinal from '../components/CTAFinal.astro';
+import Footer from '../components/Footer.astro';
+
+const purchaseFaqs = [
+  {
+    question: 'What format is the program?',
+    answer: 'A premium PDF. Print it, load it on your phone, or use a tablet in your garage. No app required, no account to create.',
+  },
+  {
+    question: 'How long are the sessions?',
+    answer: '20 to 40 minutes. Some days are shorter and heavier. Some are longer and worse. Every session gets done in under 45 minutes.',
+  },
+  {
+    question: "I don't have 50 lb dumbbells.",
+    answer: 'The program works with 25–50 lb dumbbells. Every session is the same regardless of weight. Scaling notes are included. It will be hard at any weight in that range.',
+  },
+  {
+    question: 'Is there a money-back guarantee?',
+    answer: "Yes. 30-day money-back guarantee, no questions asked. If it's not for you, you get your money back.",
+  },
+];
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    'name': 'The Fifty Standard — Edition 01',
+    'description': 'A four-week training challenge built around bodyweight and one pair of 50 lb dumbbells. 30 structured sessions with a finish line.',
+    'brand': { '@type': 'Organization', 'name': 'The Fifty Standard' },
+    'category': 'Fitness Program',
+    'offers': [
+      {
+        '@type': 'Offer',
+        'name': 'Digital',
+        'price': '29.00',
+        'priceCurrency': 'USD',
+        'availability': 'https://schema.org/PreOrder',
+        'url': 'https://thefiftystandard.com/program',
+      },
+      {
+        '@type': 'Offer',
+        'name': 'Digital + Printed Field Manual',
+        'price': '49.00',
+        'priceCurrency': 'USD',
+        'availability': 'https://schema.org/PreOrder',
+        'url': 'https://thefiftystandard.com/program',
+      },
+    ],
+  },
+];
+---
+
+<Layout
+  title="The Program — The Fifty Standard"
+  description="30 structured sessions over four weeks. Bodyweight and one pair of 50 lb dumbbells. See the workouts, the progression, and what's included."
+  canonicalPath="/program"
+  schema={schema}
+>
+  <Nav />
+  <main>
+    <PageHero
+      label="THE PROGRAM"
+      headline="30 sessions. 4 weeks. One pair of dumbbells."
+      subline="The Fifty Standard is a four-week training challenge that ramps in difficulty every week. No gym. No machines. Just bodyweight and one pair of 50 lb dumbbells."
+    />
+    <div class="container">
+      <Breadcrumbs items={[
+        { label: 'Home', href: '/' },
+        { label: 'Program' },
+      ]} />
+    </div>
+    <SpecRow />
+    <section class="program-detail section reveal">
+      <div class="container">
+        <span class="section-label">THE STRUCTURE</span>
+        <h2 class="program-detail__heading">Four weeks that ramp.</h2>
+        <p class="text-body">
+          Week 1 builds your base. You learn the movements, the pacing, and what 50 lbs feels like under fatigue. Each week adds volume, complexity, or intensity. By Week 4, you're doing things that would have buried you on Day 1.
+        </p>
+        <p class="text-body" style="margin-top: 16px;">
+          Every session mixes strength and conditioning into a single block. No separate "cardio day." No arms-only splits. You press, squat, carry, and move — every session.
+        </p>
+      </div>
+    </section>
+    <Program />
+    <FinishLine />
+    <Pricing />
+    <Setup />
+    <FAQ faqs={purchaseFaqs} showIntro={false} />
+    <CTAFinal />
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .program-detail__heading {
+    margin-bottom: 20px;
+  }
+</style>
