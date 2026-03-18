@@ -1,0 +1,40 @@
+---
+import ArticleCard from './ArticleCard.astro';
+
+interface Props {
+  articles: Array<{
+    title: string;
+    slug: string;
+    description: string;
+    readingTime?: string;
+  }>;
+  heading?: string;
+}
+
+const { articles, heading = 'KEEP READING' } = Astro.props;
+---
+
+{articles.length > 0 && (
+  <div class="related-articles">
+    <span class="section-label">{heading}</span>
+    <div class="related-articles__grid">
+      {articles.map((article) => (
+        <ArticleCard
+          title={article.title}
+          slug={article.slug}
+          description={article.description}
+          readingTime={article.readingTime}
+        />
+      ))}
+    </div>
+  </div>
+)}
+
+<style>
+  .related-articles__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    margin-top: 16px;
+  }
+</style>

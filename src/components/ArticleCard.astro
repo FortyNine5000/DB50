@@ -1,0 +1,68 @@
+---
+interface Props {
+  title: string;
+  slug: string;
+  description: string;
+  readingTime?: string;
+  publishedDate?: string;
+}
+
+const { title, slug, description, readingTime, publishedDate } = Astro.props;
+---
+
+<a href={`/learn/${slug}`} class="article-card">
+  <div class="article-card__meta">
+    {publishedDate && <span class="article-card__date">{publishedDate}</span>}
+    {readingTime && <span class="article-card__time">{readingTime}</span>}
+  </div>
+  <h3 class="article-card__title">{title}</h3>
+  <p class="article-card__desc">{description}</p>
+</a>
+
+<style>
+  .article-card {
+    display: block;
+    text-decoration: none;
+    border-top: 2px solid var(--charcoal);
+    padding: 24px 0;
+    transition: border-color 0.2s ease;
+  }
+
+  .article-card:hover {
+    border-top-color: var(--olive);
+  }
+
+  .article-card__meta {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 8px;
+  }
+
+  .article-card__date,
+  .article-card__time {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--light-gray);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .article-card__title {
+    font-family: var(--font-headline);
+    font-weight: 700;
+    font-size: clamp(1.1rem, 2vw, 1.3rem);
+    text-transform: uppercase;
+    letter-spacing: -0.005em;
+    color: var(--charcoal);
+    margin-bottom: 8px;
+    line-height: 1.1;
+  }
+
+  .article-card__desc {
+    font-family: var(--font-body);
+    font-size: 15px;
+    color: var(--warm-gray);
+    line-height: 1.5;
+    max-width: var(--text-width);
+  }
+</style>

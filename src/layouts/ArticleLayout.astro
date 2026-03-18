@@ -1,0 +1,150 @@
+---
+import Layout from './Layout.astro';
+import Nav from '../components/Nav.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import FounderBlock from '../components/FounderBlock.astro';
+import RelatedArticles from '../components/RelatedArticles.astro';
+import CTABanner from '../components/CTABanner.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  publishedDate: string;
+  modifiedDate?: string;
+  author?: string;
+  readingTime?: string;
+  relatedArticles?: Array<{
+    title: string;
+    slug: string;
+    description: string;
+    readingTime?: string;
+  }>;
+}
+
+const {
+  title,
+  description,
+  publishedDate,
+  modifiedDate,
+  author = 'The Fifty Standard',
+  readingTime,
+  relatedArticles = [],
+} = Astro.props;
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    'headline': title,
+    'description': description,
+    'datePublished': publishedDate,
+    ...(modifiedDate ? { 'dateModified': modifiedDate } : {}),
+    'author': { '@type': 'Person', 'name': author },
+    'publisher': { '@type': 'Organization', 'name': 'The Fifty Standard' },
+    'mainEntityOfPage': {
+      '@type': 'WebPage',
+      '@id': `https://thefiftystandard.com${Astro.url.pathname}`,
+    },
+  },
+];
+---
+
+<Layout
+  title={`${title} — The Fifty Standard`}
+  description={description}
+  canonicalPath={Astro.url.pathname}
+  ogType="article"
+  schema={schema}
+  publishedDate={publishedDate}
+  modifiedDate={modifiedDate}
+  author={author}
+>
+  <Nav />
+  <main>
+    <article class="article">
+      <div class="container">
+        <div class="article__header">
+          <Breadcrumbs items={[
+            { label: 'Home', href: '/' },
+            { label: 'Learn', href: '/learn' },
+            { label: title },
+          ]} />
+          <div class="article__meta">
+            <span class="article__date">{publishedDate}</span>
+            {readingTime && <span class="article__time">{readingTime}</span>}
+            <span class="article__author">{author}</span>
+          </div>
+          <h1 class="article__title">{title}</h1>
+        </div>
+        <div class="article__body prose">
+          <slot />
+        </div>
+        <div class="article__footer">
+          <FounderBlock variant="compact" />
+          <CTABanner
+            headline="START THE CHALLENGE"
+            subline="30 sessions. 4 weeks. One pair of dumbbells."
+            showEmailCapture={true}
+            emailTag="article-cta"
+          />
+          {relatedArticles.length > 0 && (
+            <RelatedArticles articles={relatedArticles} />
+          )}
+        </div>
+      </div>
+    </article>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  @import '../styles/typography.css';
+
+  .article__header {
+    padding-top: 160px;
+    padding-bottom: 40px;
+  }
+
+  .article__meta {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 16px;
+    margin-top: 24px;
+  }
+
+  .article__date,
+  .article__time,
+  .article__author {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--light-gray);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .article__title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    line-height: 0.95;
+    max-width: 700px;
+  }
+
+  .article__body {
+    padding-bottom: 48px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .article__footer {
+    padding-top: 48px;
+    padding-bottom: var(--section-pad);
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+  }
+
+  @media (max-width: 768px) {
+    .article__header {
+      padding-top: 120px;
+    }
+  }
+</style>
